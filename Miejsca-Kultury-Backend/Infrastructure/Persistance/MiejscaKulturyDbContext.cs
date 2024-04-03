@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistance;
 
-public class Miejsca_KulturyDbContext :DbContext
+public class MiejscaKulturyDbContext :DbContext
 {
-    public Miejsca_KulturyDbContext(DbContextOptions<Miejsca_KulturyDbContext> options): base(options){}
+    public MiejscaKulturyDbContext(DbContextOptions<MiejscaKulturyDbContext> options): base(options){}
     
     public DbSet<User> Users { get; set; }
     public DbSet<Likes> Likes { get; set; }
