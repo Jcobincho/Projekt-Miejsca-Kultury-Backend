@@ -7,13 +7,13 @@ public class MiejscaKulturyDbContext :DbContext
 {
     public MiejscaKulturyDbContext(DbContextOptions<MiejscaKulturyDbContext> options): base(options){}
     
-    public DbSet<User> Users { get; set; }
-    public DbSet<Likes> Likes { get; set; }
-    public DbSet<Open> Open { get; set; }
-    public DbSet<Photos> Photos { get; set; }
-    public DbSet<Places> Places { get; set; }
-    public DbSet<Reviews> Reviews { get; set; }
-    public DbSet<Comments> Comments { get; set; }
+    public DbSet<Users> User { get; set; }
+    public DbSet<Likes> Like { get; set; }
+    public DbSet<Opens> Open { get; set; }
+    public DbSet<Photos> Photo { get; set; }
+    public DbSet<Places> Place { get; set; }
+    public DbSet<Reviews> Review { get; set; }
+    public DbSet<Comments> Comment { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

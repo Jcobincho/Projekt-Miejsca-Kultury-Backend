@@ -8,5 +8,5 @@ public class Comments
     public Guid? PlaceId { get; set; }
     public Places Places { get; set; }
     public Guid? UserId { get; set; }
-    public User User { get; set; }
+    public Users Users { get; set; }
 }

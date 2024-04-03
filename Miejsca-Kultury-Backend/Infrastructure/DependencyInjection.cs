@@ -1,5 +1,6 @@
 using Domain.Entities;
 using Infrastructure.Persistance;
+using Infrastructure.Persistance.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,9 @@ public static class DependencyInjection
         services.AddDbContext<MiejscaKulturyDbContext>(options => options.UseNpgsql(
             configuration.GetConnectionString("Database"),
             m => m.MigrationsAssembly("Infrastructure")));
+
+        services.AddScoped<MigrationSeeder>();
+        
         return services;
     }
 }
