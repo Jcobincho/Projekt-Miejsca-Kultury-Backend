@@ -1,5 +1,7 @@
+using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Entities;
 using Infrastructure.Persistance;
+using Infrastructure.Persistance.Repositories.AccountRepositories;
 using Infrastructure.Persistance.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +18,7 @@ public static class DependencyInjection
             m => m.MigrationsAssembly("Infrastructure")));
 
         services.AddScoped<MigrationSeeder>();
+        services.AddScoped<IAccountRepository, AccountRepository>();
         
         return services;
     }
