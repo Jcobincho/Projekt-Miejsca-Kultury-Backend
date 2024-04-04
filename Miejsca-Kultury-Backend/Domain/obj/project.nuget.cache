@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "vYXxkitEYkcy3p3tk7OOoYzVAgLwLPee7gdHGWOWrjlbhGE6zOUzXGBSHi61oHGhfGZVYgIEkH3+zxwdxhUy2A==",
+  "dgSpecHash": "8fjw/rm9Bt1/o3RrKdWnSU3UceVPdCwbzVNV4zPV7db8LGeAPIk5KNNmT/NvbCNNqPZh0qecEdo8GVNN7lHuZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sebcw\\Documents\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
+  ],
   "logs": []
 }

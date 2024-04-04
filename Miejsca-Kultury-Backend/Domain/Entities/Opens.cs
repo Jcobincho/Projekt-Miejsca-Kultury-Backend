@@ -1,6 +1,6 @@
 namespace Domain.Entities;
 
-public class Open
+public class Opens
 {
     public Guid Id { get; set; }
     public string Monday { get; set; }
