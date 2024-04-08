@@ -1,4 +1,5 @@
 using Application.CQRS.Account.Commands.CreateAccount;
+using Application.CQRS.Account.Commands.SignIn;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.Areas.Auth;
@@ -15,6 +16,20 @@ public class AccountController : BaseController
     [HttpPost("/register")]
     public async Task<IActionResult> CreateAccount([FromBody] CreateAccountCommand command,
         CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Sign in
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken">Email, Password</param>
+    /// <returns>Token JWT</returns>
+    [HttpPost("/sign-in")]
+    public async Task<IActionResult> SignIn([FromBody] SignInCommand command, CancellationToken cancellationToken)
     {
         var result = await Mediator.Send(command, cancellationToken);
 

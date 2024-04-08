@@ -113,3 +113,11 @@ C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\A
 C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\obj\Debug\net7.0\Api.genruntimeconfig.cache
 C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\obj\Debug\net7.0\ref\Api.dll
 C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\BCrypt.Net-Core.dll
+C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\jakub\Desktop\Projekt-Miejsca-Kultury-Backend\Miejsca-Kultury-Backend\Api\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
