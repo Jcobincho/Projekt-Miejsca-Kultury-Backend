@@ -8,4 +8,7 @@ public class Places
     public int AverageRatings { get; set; }
     public string Category { get; set; }
     public double Localization { get; set; }
+
+    public Guid? UserId { get; set; }
+    public Users Users { get; set; }
 }

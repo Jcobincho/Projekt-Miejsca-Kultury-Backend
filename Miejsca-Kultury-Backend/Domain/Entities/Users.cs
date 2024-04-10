@@ -10,6 +10,9 @@ public class Users
     public string Email { get; set; }
     public string Password { get; set; }
     public Roles Role { get; set; }
+    public string RefreshToken { get; set; } = string.Empty;
+    public DateTimeOffset TokenCreated { get; set; }
+    public DateTimeOffset TokenExpires { get; set; }
 
     public Users() { }
 

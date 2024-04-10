@@ -191,7 +191,15 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Place");
                 });
@@ -314,6 +322,17 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Places");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Places", b =>
+                {
+                    b.HasOne("Domain.Entities.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Domain.Entities.Reviews", b =>
