@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistance;
 
-public class MiejscaKulturyDbContext :DbContext
+public class MiejscaKulturyDbContext : DbContext
 {
     public MiejscaKulturyDbContext(DbContextOptions<MiejscaKulturyDbContext> options): base(options){}
     

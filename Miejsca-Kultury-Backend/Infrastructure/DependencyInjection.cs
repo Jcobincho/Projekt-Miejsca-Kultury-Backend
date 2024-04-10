@@ -21,8 +21,9 @@ public static class DependencyInjection
     {
         services.AddDbContext<MiejscaKulturyDbContext>(options => options.UseNpgsql(
             configuration.GetConnectionString("Database"),
-            m => m.MigrationsAssembly("Infrastructure")));
+            m => m.MigrationsAssembly(typeof(AssemblyReference).Assembly.ToString())));
 
+        services.AddHttpContextAccessor();
         services.AddScoped<MigrationSeeder>();
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddValidatorsFromAssemblyContaining<SignInCommand>();
