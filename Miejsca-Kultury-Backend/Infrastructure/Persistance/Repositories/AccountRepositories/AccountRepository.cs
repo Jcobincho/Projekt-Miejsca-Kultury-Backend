@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Application.CQRS.Account.Commands.UpdateAccount;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Authentication;
 using Domain.Entities;
@@ -78,6 +79,19 @@ public class AccountRepository : IAccountRepository
         return newToken;
     }
 
+    public async Task UpdateAccount(UpdateAccountCommand request,CancellationToken cancellationToken)
+    {
+        
+        var user = await _context.User.FirstOrDefaultAsync(x => x.Id == request.Id,cancellationToken);
+
+        user.Name = request.Name ?? user.Name;
+        user.Email = request.Email ?? user.Email;
+        user.Surname = request.Surname ?? user.Surname;
+        
+        
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
     private string GenerateToken(Guid userId, string name, string surname)
     {
         var claims = new List<Claim>()
@@ -124,4 +138,6 @@ public class AccountRepository : IAccountRepository
         user.TokenCreated = refreshToken.CreatedAt;
         user.TokenExpires = refreshToken.Expires;
     }
+    
+    
 }
