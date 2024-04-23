@@ -1,13 +1,13 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Application.CQRS.Account.Commands.SignIn;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Authentication;
+using Domain.Entities;
 using FluentValidation;
 using Infrastructure.Persistance;
 using Infrastructure.Persistance.Repositories.AccountRepositories;
-using Infrastructure.Persistance.Seeders;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,9 +23,21 @@ public static class DependencyInjection
             configuration.GetConnectionString("Database"),
             m => m.MigrationsAssembly(typeof(AssemblyReference).Assembly.ToString())));
 
-        services.AddHttpContextAccessor();
-        services.AddScoped<MigrationSeeder>();
+        services.AddHostedService<DatabaseInitializer>();
+        
+        services.AddIdentity<Users, IdentityRole<Guid>>()
+            .AddEntityFrameworkStores<MiejscaKulturyDbContext>()
+            .AddDefaultTokenProviders();
+        
+        services.AddScoped<SignInManager<Users>>();
+        services.AddScoped<UserManager<Users>>();
+        
+        
+        
+
         services.AddScoped<IAccountRepository, AccountRepository>();
+
+        services.AddHttpContextAccessor();
         services.AddValidatorsFromAssemblyContaining<SignInCommand>();
         
         return services;

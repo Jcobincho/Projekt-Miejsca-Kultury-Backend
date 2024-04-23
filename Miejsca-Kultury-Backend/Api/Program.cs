@@ -26,7 +26,6 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.ApplyPendingMigration();
 app.MapControllers();
 app.AddGlobalErrorHandler();
 app.Run();

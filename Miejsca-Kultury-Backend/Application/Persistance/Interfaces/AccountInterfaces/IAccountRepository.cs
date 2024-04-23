@@ -1,11 +1,12 @@
+using System.Security.Claims;
+using Domain.Authentication;
 using Domain.Entities;
 
 namespace Application.Persistance.Interfaces.AccountInterfaces;
 
 public interface IAccountRepository
 {
-    Task<bool> IsEmailExist(string email, CancellationToken cancellationToken);
-    Task<Guid> CreateAccount(Users user, CancellationToken cancellationToken);
-    Task<string> SignIn(string email, string password, CancellationToken cancellationToken);
-    Task<string> RefreshToken(string refreshToken, CancellationToken cancellationToken);
+    Task SaveChangesAsync(CancellationToken cancellationToken);
+    Task<Users> FindUserAsync(string email, CancellationToken cancellationToken);
+    JsonWebToken GenerateJwtToken(Guid userId, string email, ICollection<string> roles, ICollection<Claim> claims);
 }
