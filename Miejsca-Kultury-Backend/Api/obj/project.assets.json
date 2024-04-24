@@ -2676,48 +2676,41 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jakub\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\barto\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\Api.csproj",
+      "projectUniqueName": "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\Api.csproj",
       "projectName": "Api",
-      "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\Api.csproj",
-      "packagesPath": "C:\\Users\\jakub\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\obj\\",
+      "projectPath": "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\Api.csproj",
+      "packagesPath": "C:\\Users\\barto\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jakub\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\barto\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj"
+            "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj"
             },
-            "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj"
+            "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj"
             },
-            "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj": {
-              "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj"
+            "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj": {
+              "projectPath": "C:\\Users\\barto\\OneDrive\\Pulpit\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj"
             }
           }
         }
@@ -2726,11 +2719,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2775,24 +2763,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.16, 7.0.16]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[7.0.16, 7.0.16]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.16, 7.0.16]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[7.0.16, 7.0.16]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2801,7 +2771,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

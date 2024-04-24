@@ -1,7 +1,9 @@
 using Application.CQRS.Account.Commands.CreateAccount;
 using Application.CQRS.Account.Commands.RefreshToken;
 using Application.CQRS.Account.Commands.SignIn;
+using Application.CQRS.Account.Commands.UpdateAccount;
 using Domain.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.Areas.Auth;
@@ -52,6 +54,13 @@ public class AccountController : BaseController
         
         var result = await Mediator.Send(new RefreshTokenCommand(refreshToken));
 
+        return Ok(result);
+    }
+    //[Authorize]
+    [HttpPost("/update-account")]
+    public async Task<IActionResult> UpdateAccount([FromBody] UpdateAccountCommand command,CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 }

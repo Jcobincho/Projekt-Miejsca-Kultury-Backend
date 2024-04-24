@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Application.CQRS.Account.Commands.SignIn;
 using Application.Persistance.Interfaces.AccountInterfaces;
+using Application.Persistance.Interfaces.ClaimUserId;
 using Domain.Authentication;
 using FluentValidation;
 using Infrastructure.Persistance;
@@ -26,6 +27,7 @@ public static class DependencyInjection
         services.AddHttpContextAccessor();
         services.AddScoped<MigrationSeeder>();
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<IGetUserId, GetUserId>();
         services.AddValidatorsFromAssemblyContaining<SignInCommand>();
         
         return services;

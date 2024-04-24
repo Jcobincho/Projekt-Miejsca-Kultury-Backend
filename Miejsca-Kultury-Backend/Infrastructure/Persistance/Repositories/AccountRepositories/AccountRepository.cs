@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Application.CQRS.Account.Commands.UpdateAccount;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Authentication;
 using Domain.Entities;
@@ -78,6 +79,20 @@ public class AccountRepository : IAccountRepository
         return newToken;
     }
 
+    public async Task<bool> ResetPassword(string token, string password, CancellationToken cancellationToken)
+    {
+        var user = await _context.User.FirstOrDefaultAsync(x => x.RefreshToken == token, cancellationToken);
+
+        if (user is null) return false;
+
+        user.Password = BCrypt.Net.BCrypt.HashPassword(password);
+
+        user.TokenExpires = DateTimeOffset.MinValue;
+        
+        await _context.SaveChangesAsync(cancellationToken);
+        return true;
+    }
+
     private string GenerateToken(Guid userId, string name, string surname)
     {
         var claims = new List<Claim>()
@@ -124,4 +139,6 @@ public class AccountRepository : IAccountRepository
         user.TokenCreated = refreshToken.CreatedAt;
         user.TokenExpires = refreshToken.Expires;
     }
+    
+    
 }
