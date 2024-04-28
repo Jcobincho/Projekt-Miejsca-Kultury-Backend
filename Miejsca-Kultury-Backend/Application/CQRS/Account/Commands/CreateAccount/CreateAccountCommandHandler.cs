@@ -29,6 +29,7 @@ public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand>
         var user = new Users
         {
             Email = request.Email,
+            UserName = request.Email,
             Name = request.Name,
             Surname = request.Surname
         };
