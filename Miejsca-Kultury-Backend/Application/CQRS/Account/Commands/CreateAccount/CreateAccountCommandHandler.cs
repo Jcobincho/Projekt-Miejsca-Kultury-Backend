@@ -3,6 +3,7 @@ using Application.CQRS.Account.Static;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Entities;
 using Domain.Exceptions;
+using Domain.Exceptions.MessagesExceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand>
     public async Task Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
         var isEmailExist = await _userManager.Users.AnyAsync(x => x.Email == request.Email, cancellationToken);
-        if (isEmailExist) throw new BadRequestException("Podaj inny email");
+        if (isEmailExist) throw new UserWithEmailExistsException();
 
         var user = new Users
         {
@@ -35,14 +36,14 @@ public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand>
         };
 
         var createUser = await _userManager.CreateAsync(user, request.Password);
-        if (!createUser.Succeeded) throw new BadRequestException("Nie udało się stworzyć urzytkownika1!");
+        if (!createUser.Succeeded) throw new CreateUserException(createUser.Errors);
 
         var addUserRole = await _userManager.AddToRoleAsync(user, UserRoles.User);
-        if (!addUserRole.Succeeded) throw new BadRequestException("Nie udało się dodać roli");
+        if (!addUserRole.Succeeded) throw new AddToRoleException();
 
         var addNameClaim =
             await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
-        if (!addNameClaim.Succeeded) throw new BadRequestException("Nie udało się dodać claima");
+        if (!addNameClaim.Succeeded) throw new AddClaimException();
 
         await _accountRepository.SaveChangesAsync(cancellationToken);
     }

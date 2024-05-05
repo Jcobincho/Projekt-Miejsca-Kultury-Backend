@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "m8HaxwAMAjf+HhldRE0SdBhKST/UBCpq1v3FCYW89VSPOz5swcwXovGaAcVLI7/aOXqUESc+OLid7UiN9jQJ0w==",
+  "dgSpecHash": "DwbMpCDqQEDzoWOyrabE46zImLKsL5CTlF4fCsJLcfK7abaIo/KZC3t0bzdhhg+lAzI4YJJ21zn3tOk2NFnQ8w==",
   "success": true,
   "projectFilePath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jakub\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\jakub\\.nuget\\packages\\communitytoolkit.highperformance\\8.2.2\\communitytoolkit.highperformance.8.2.2.nupkg.sha512",
-    "C:\\Users\\jakub\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\fluentvalidation\\11.9.1\\fluentvalidation.11.9.1.nupkg.sha512",
+    "C:\\Users\\jakub\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\jakub\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.9.0\\fluentvalidation.dependencyinjectionextensions.11.9.0.nupkg.sha512",
     "C:\\Users\\jakub\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\jakub\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",

@@ -28,11 +28,26 @@ public static class DependencyInjection
         services.AddIdentity<Users, IdentityRole<Guid>>()
             .AddEntityFrameworkStores<MiejscaKulturyDbContext>()
             .AddDefaultTokenProviders();
+
+        services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequireDigit = true;
+            options.Password.RequiredLength = 6;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequiredUniqueChars = 4;
+
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+            options.Lockout.MaxFailedAccessAttempts = 10;
+            options.Lockout.AllowedForNewUsers = false;
+
+            options.User.RequireUniqueEmail = true;
+            options.SignIn.RequireConfirmedEmail = false;
+        });
         
         services.AddScoped<SignInManager<Users>>();
         services.AddScoped<UserManager<Users>>();
-        
-        
         
 
         services.AddScoped<IAccountRepository, AccountRepository>();

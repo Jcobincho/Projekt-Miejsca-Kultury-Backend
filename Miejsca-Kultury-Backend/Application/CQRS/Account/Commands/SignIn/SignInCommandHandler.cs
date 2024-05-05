@@ -2,6 +2,7 @@ using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Authentication;
 using Domain.Entities;
 using Domain.Exceptions;
+using Domain.Exceptions.MessagesExceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
@@ -24,10 +25,10 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, JsonWebToken>
     {
         var user = await _accountRepository.FindUserAsync(request.Email, cancellationToken);
 
-        if (user is null) throw new NotFoundException("Podaj poprawne dane logowania!");
+        if (user is null) throw new InvalidCredentialsException();
 
         var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, true);
-        if (!result.Succeeded) throw new NotFoundException("Podaj poprawne dane logowania!");
+        if (!result.Succeeded) throw new InvalidCredentialsException();
 
         var userRoles = await _userManager.GetRolesAsync(user);
         var userClaims = await _userManager.GetClaimsAsync(user);

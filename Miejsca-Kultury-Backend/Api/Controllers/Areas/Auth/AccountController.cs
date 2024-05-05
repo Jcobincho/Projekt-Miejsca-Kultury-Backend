@@ -14,6 +14,8 @@ public class AccountController : BaseController
     /// <param name="cancellationToken"></param>
     /// <returns> New user ID</returns>
     [HttpPost("/register")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAccount([FromBody] CreateAccountCommand command,
         CancellationToken cancellationToken)
     {
@@ -29,6 +31,8 @@ public class AccountController : BaseController
     /// <param name="cancellationToken">Email, Password</param>
     /// <returns>Token JWT</returns>
     [HttpPost("/sign-in")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SignIn([FromBody] SignInCommand command, CancellationToken cancellationToken)
     {
         var result = await Mediator.Send(command, cancellationToken);
