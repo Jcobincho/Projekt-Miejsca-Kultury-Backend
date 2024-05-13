@@ -1,11 +1,13 @@
 using System.Text;
 using Application.CQRS.Account.Commands.SignIn;
 using Application.Persistance.Interfaces.AccountInterfaces;
+using Application.Persistance.Interfaces.EmailInterfaces;
 using Domain.Authentication;
 using Domain.Entities;
 using FluentValidation;
 using Infrastructure.Persistance;
 using Infrastructure.Persistance.Repositories.AccountRepositories;
+using Infrastructure.Persistance.Repositories.Email.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +53,12 @@ public static class DependencyInjection
         
 
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
+        services.AddScoped<IEmailSenderService, IEmailSenderService>();
+
+        var smtpConfig = new SmtpConfig();
+        configuration.GetSection("SMTP").Bind(smtpConfig);
+        services.AddSingleton(smtpConfig);
 
         services.AddHttpContextAccessor();
         services.AddValidatorsFromAssemblyContaining<SignInCommand>();
