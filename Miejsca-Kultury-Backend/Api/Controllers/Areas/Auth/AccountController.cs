@@ -76,6 +76,12 @@ public class AccountController : BaseController
         return Ok("Pomyślnie zweryfikowano konto!");
     }
 
+    /// <summary>
+    /// Send email with reset password
+    /// </summary>
+    /// <param name="event"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpPost("send-reset-password-request")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -86,6 +92,12 @@ public class AccountController : BaseController
         return Ok("Reset hasła możliwy na podanym e-mailu!");
     }
 
+    /// <summary>
+    /// Reset password
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpPost("reset-password")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
