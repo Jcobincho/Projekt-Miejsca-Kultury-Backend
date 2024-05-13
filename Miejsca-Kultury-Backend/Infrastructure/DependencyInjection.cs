@@ -8,6 +8,7 @@ using FluentValidation;
 using Infrastructure.Persistance;
 using Infrastructure.Persistance.Repositories.AccountRepositories;
 using Infrastructure.Persistance.Repositories.Email.Configuration;
+using Infrastructure.Persistance.Repositories.Email.EmailRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -54,7 +55,7 @@ public static class DependencyInjection
 
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
-        services.AddScoped<IEmailSenderService, IEmailSenderService>();
+        services.AddScoped<IEmailSenderService, EmailSenderService>();
 
         var smtpConfig = new SmtpConfig();
         configuration.GetSection("SMTP").Bind(smtpConfig);
