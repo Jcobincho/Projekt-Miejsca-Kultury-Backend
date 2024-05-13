@@ -1,12 +1,14 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
+using Application.CQRS.Account.DTO;
+using Application.CQRS.Account.Static;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Authentication;
 using Domain.Entities;
-using Domain.RefreshToken;
-using Microsoft.AspNetCore.Http;
+using Domain.Exceptions;
+using Domain.Exceptions.MessagesExceptions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -16,112 +18,146 @@ public class AccountRepository : IAccountRepository
 {
     private readonly MiejscaKulturyDbContext _context;
     private readonly JwtSettings _jwtSettings;
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly UserManager<Users> _userManager;
 
-    public AccountRepository(MiejscaKulturyDbContext context, JwtSettings jwtSettings, IHttpContextAccessor httpContextAccessor)
+    public AccountRepository(MiejscaKulturyDbContext context, JwtSettings jwtSettings, UserManager<Users> userManager)
     {
         _context = context;
         _jwtSettings = jwtSettings;
-        _httpContextAccessor = httpContextAccessor;
-    }
-    
-    
-    public async Task<bool> IsEmailExist(string email, CancellationToken cancellationToken)
-    {
-        return await _context.User.AnyAsync(x => x.Email == email, cancellationToken);
+        _userManager = userManager;
     }
 
-    public async Task<Guid> CreateAccount(Users user, CancellationToken cancellationToken)
+    public async Task<Guid> CreateUserAsync(string email, string password, string name, string surname, CancellationToken cancellationToken)
     {
-        user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-        
-        await _context.User.AddAsync(user, cancellationToken);
-        await _context.SaveChangesAsync(cancellationToken);
+        var isEmailExist = await _userManager.Users.AnyAsync(x => x.Email == email, cancellationToken);
+        if (isEmailExist) throw new UserWithEmailExistsException();
+
+        var user = new Users
+        {
+            Email = email,
+            UserName = email,
+            Name = name,
+            Surname = surname
+        };
+
+        var createUser = await _userManager.CreateAsync(user, password);
+        if (!createUser.Succeeded) throw new CreateUserException(createUser.Errors);
+
+        var addUserRole = await _userManager.AddToRoleAsync(user, UserRoles.User);
+        if (!addUserRole.Succeeded) throw new AddToRoleException();
+
+        var addNameClaim = await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+        if (!addNameClaim.Succeeded) throw new AddClaimException();
 
         return user.Id;
     }
 
-    public async Task<string> SignIn(string email, string password, CancellationToken cancellationToken)
+    public async Task SaveChangesAsync(CancellationToken cancellationToken)
     {
-        var user = await _context.User.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
-
-        if (user is null) return null;
-
-        var verifyPassword = BCrypt.Net.BCrypt.Verify(password, user.Password);
-        
-        if (!verifyPassword) return null;
-
-        var newToken = GenerateToken(user.Id, user.Name, user.Surname);
-        var refreshToken = GenerateRefreshToken();
-        SetRefreshToken(refreshToken, user);
-
         await _context.SaveChangesAsync(cancellationToken);
-
-        return newToken;
     }
 
-    public async Task<string> RefreshToken(string refreshToken, CancellationToken cancellationToken)
+    public async Task<Users> FindUserAsync(string email, CancellationToken cancellationToken)
     {
-        var user = await _context.User.FirstOrDefaultAsync(x => x.RefreshToken == refreshToken, cancellationToken);
+        return await _context.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+    }
 
-        if (user is null || user.TokenExpires < DateTimeOffset.Now)
+    public JsonWebToken GenerateJwtToken(Guid userId, string email, ICollection<string> roles, ICollection<Claim> claims)
+    {
+        var now = DateTime.UtcNow;
+        
+        var jwtClaims = new List<Claim>()
         {
-            return null;
+            new(JwtRegisteredClaimNames.Sub, userId.ToString()),
+            new(JwtRegisteredClaimNames.UniqueName, userId.ToString()),
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new(JwtRegisteredClaimNames.Iat, new DateTimeOffset(now).ToUnixTimeSeconds().ToString())
+        };
+
+        if (roles?.Any() is true)
+        {
+            foreach (var role in roles)
+            {
+                jwtClaims.Add(new Claim(ClaimTypes.Role, role));
+            }
         }
 
-        var newToken = GenerateToken(user.Id, user.Name, user.Surname);
-        var newRefreshToken = GenerateRefreshToken();
-        SetRefreshToken(newRefreshToken, user);
-
-        await _context.SaveChangesAsync(cancellationToken);
-
-        return newToken;
-    }
-
-    private string GenerateToken(Guid userId, string name, string surname)
-    {
-        var claims = new List<Claim>()
+        if (claims?.Any() is true)
         {
-            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-            new Claim(ClaimTypes.Name, name),
-            new Claim(ClaimTypes.Surname, surname)
-        };
+            var customClaims = new List<Claim>();
+            foreach (var claim in claims)
+            {
+                customClaims.Add(new Claim(claim.Type, claim.Value));
+            }
+            jwtClaims.AddRange(customClaims);
+        }
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
         var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-        var expires = DateTime.Now.AddMinutes(_jwtSettings.ExpiryMinutes);
+        var expires = now.AddMinutes(_jwtSettings.ExpiryMinutes);
 
-        var token = new JwtSecurityToken(
+        var jwt = new JwtSecurityToken(
             _jwtSettings.Issuer,
             _jwtSettings.Audience,
-            claims,
+            jwtClaims,
             expires: expires,
             signingCredentials: cred
             );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
-    }
+        var token = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-    private RefreshToken GenerateRefreshToken()
-    {
-        return new RefreshToken
+        return new JsonWebToken
         {
-            Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
-            Expires = DateTimeOffset.Now.AddDays(7)
+            AccessToken = token,
+            Expires = new DateTimeOffset(expires).ToUnixTimeSeconds(),
+            UserId = userId,
+            Email = email,
+            Roles = roles,
+            Claims = claims?.ToDictionary(x => x.Type, c => c.Value)
         };
     }
 
-    private void SetRefreshToken(RefreshToken refreshToken, Users user)
+    public async Task<Users?> GetUserById(Guid id, CancellationToken cancellationToken)
     {
-        var cookieOptions = new CookieOptions
-        {
-            HttpOnly = true,
-            Expires = refreshToken.Expires
-        };
-        _httpContextAccessor.HttpContext.Response.Cookies.Append(Domain.RefreshToken.RefreshToken.CookieName, refreshToken.Token, cookieOptions);
+        return await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+    }
 
-        user.RefreshToken = refreshToken.Token;
-        user.TokenCreated = refreshToken.CreatedAt;
-        user.TokenExpires = refreshToken.Expires;
+    public async Task<string> GenerateEmailConfirmTokenAsync(Users user, CancellationToken cancellationToken)
+    {
+        return await _userManager.GenerateEmailConfirmationTokenAsync(user);
+    }
+
+    public async Task ConfirmAccountAsync(Guid userId, string token, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken)
+            ?? throw new ConfirmAccountException();
+
+        var result = await _userManager.ConfirmEmailAsync(user, token);
+
+        if (!result.Succeeded) throw new ConfirmAccountException();
+    }
+
+    public async Task<ResetPasswordDto> GeneratePasswordTokenAsync(string email, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+
+        if (user is null) throw new UserNotFoundException();
+
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+        return new ResetPasswordDto
+        {
+            UserId = user.Id,
+            Token = token
+        };
+    }
+
+    public async Task ResetPasswordAssync(string token, Guid userId, string password, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+        if (user is null) throw new UserNotFoundException();
+
+        var result = await _userManager.ResetPasswordAsync(user, token, password);
+        if (!result.Succeeded) throw new CreateUserException(result.Errors);
     }
 }

@@ -16,7 +16,7 @@ public class CreateAccountCommandValidator : AbstractValidator<CreateAccountComm
             .NotEmpty().EmailAddress().WithMessage("Należy podać poprawny email");
 
         RuleFor(x => x.Password)
-            .NotEmpty().MinimumLength(8).WithMessage("Hasło musi mieć minimum 8 znaków");
+            .NotEmpty().WithMessage("Hasło musi mieć minimum 8 znaków");
 
         RuleFor(x => x.RepeatPassword)
             .NotEmpty().Equal(x => x.Password).WithMessage("Hasła nie są identyczne");

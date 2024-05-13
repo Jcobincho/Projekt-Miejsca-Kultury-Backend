@@ -1,32 +1,33 @@
-using Application.Contracts.Account;
+using Application.CQRS.Account.Events.SendConfirmAccountEmail;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Entities;
-using Domain.Enums.RolesEnum;
-using Domain.Exceptions;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Application.CQRS.Account.Commands.CreateAccount;
 
-public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, AccountCreatedResponse>
+public sealed class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand>
 {
+    private readonly UserManager<Users> _userManager;
     private readonly IAccountRepository _accountRepository;
+    private readonly IMediator _mediator;
 
-    public CreateAccountCommandHandler(IAccountRepository accountRepository)
+    public CreateAccountCommandHandler(UserManager<Users> userManager, IAccountRepository accountRepository, IMediator mediator)
     {
+        _userManager = userManager;
         _accountRepository = accountRepository;
+        _mediator = mediator;
     }
 
 
-    public async Task<AccountCreatedResponse> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
+    public async Task Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
-        var isEmailExist = await _accountRepository.IsEmailExist(request.Email, cancellationToken);
+        var userId = await _accountRepository.CreateUserAsync(request.Email, request.Password, request.Name, 
+            request.Surname, cancellationToken);
 
-        if (isEmailExist) throw new BadRequestException("Ten e-mail jest już zajęty");
+        await _mediator.Publish(new SendConfirmAccountEmailEvent(userId), cancellationToken);
 
-        var user = new Users(request.Name, request.Surname, request.Email, request.Password, Roles.User);
-
-        var userId = await _accountRepository.CreateAccount(user, cancellationToken);
-
-        return new AccountCreatedResponse(userId);
+        await _accountRepository.SaveChangesAsync(cancellationToken);
     }
 }

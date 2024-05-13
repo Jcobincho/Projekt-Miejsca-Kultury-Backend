@@ -1,4 +1,4 @@
-using Application.Contracts.Account;
+using Domain.Authentication;
 using MediatR;
 
 namespace Application.CQRS.Account.Commands.SignIn;
@@ -6,4 +6,4 @@ namespace Application.CQRS.Account.Commands.SignIn;
 public record SignInCommand(
     string Email,
     string Password
-    ) : IRequest<SignInResponse>;
+    ) : IRequest<JsonWebToken>;
