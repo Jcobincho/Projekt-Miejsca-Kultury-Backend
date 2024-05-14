@@ -15,6 +15,7 @@ public class MiejscaKulturyDbContext : IdentityDbContext<Users, IdentityRole<Gui
     public DbSet<Places> Place { get; set; }
     public DbSet<Reviews> Review { get; set; }
     public DbSet<Comments> Comment { get; set; }
+    public DbSet<Image> Images { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

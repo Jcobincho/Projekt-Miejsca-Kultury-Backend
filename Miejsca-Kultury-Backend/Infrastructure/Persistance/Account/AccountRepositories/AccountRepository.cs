@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Infrastructure.Persistance.Repositories.AccountRepositories;
+namespace Infrastructure.Persistance.Account.AccountRepositories;
 
 public class AccountRepository : IAccountRepository
 {

@@ -2,7 +2,7 @@ using System.Security.Claims;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Microsoft.AspNetCore.Http;
 
-namespace Infrastructure.Persistance.Repositories.AccountRepositories;
+namespace Infrastructure.Persistance.Account.AccountRepositories;
 
 public class CurrentUserService : ICurrentUserService
 {

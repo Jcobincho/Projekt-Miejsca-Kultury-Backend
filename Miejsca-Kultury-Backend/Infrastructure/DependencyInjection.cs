@@ -2,11 +2,14 @@ using System.Text;
 using Application.CQRS.Account.Commands.SignIn;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Application.Persistance.Interfaces.EmailInterfaces;
+using Application.Persistance.Interfaces.S3StorageInterfaces;
 using Domain.Authentication;
 using Domain.Entities;
 using FluentValidation;
 using Infrastructure.Persistance;
-using Infrastructure.Persistance.Repositories.AccountRepositories;
+using Infrastructure.Persistance.Account.AccountRepositories;
+using Infrastructure.Persistance.FilesStorage.Configuration;
+using Infrastructure.Persistance.FilesStorage.Services;
 using Infrastructure.Persistance.Repositories.Email.Configuration;
 using Infrastructure.Persistance.Repositories.Email.EmailRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -56,10 +59,15 @@ public static class DependencyInjection
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IEmailSenderService, EmailSenderService>();
+        services.AddScoped<IS3StorageService, S3StorageService>();
 
         var smtpConfig = new SmtpConfig();
         configuration.GetSection("SMTP").Bind(smtpConfig);
         services.AddSingleton(smtpConfig);
+
+        var s3Config = new S3Configuration();
+        configuration.GetSection("S3Service").Bind(s3Config);
+        services.AddSingleton(s3Config);
 
         services.AddHttpContextAccessor();
         services.AddValidatorsFromAssemblyContaining<SignInCommand>();

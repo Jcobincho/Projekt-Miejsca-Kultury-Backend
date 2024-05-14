@@ -8,6 +8,9 @@ public class Users : IdentityUser<Guid>
 {
     public string Name { get; set; }
     public string Surname { get; set; }
+
+    public Guid? ImageId { get; set; }
+    public Image Image { get; set; }
     
 }
 
