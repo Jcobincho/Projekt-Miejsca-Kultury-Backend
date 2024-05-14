@@ -18,14 +18,14 @@ public class AccountController : BaseController
     /// <param name="cancellationToken"></param>
     /// <returns> New user ID</returns>
     [HttpPost("/register")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAccount([FromBody] CreateAccountCommand command,
         CancellationToken cancellationToken)
     {
         await Mediator.Send(command, cancellationToken);
 
-        return Created("Konto utworzone pomyślnie!", null);
+        return Ok("Konto utworzone pomyślnie!");
     }
 
     /// <summary>

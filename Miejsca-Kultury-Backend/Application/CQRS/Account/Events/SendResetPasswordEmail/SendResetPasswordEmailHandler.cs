@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.CQRS.Account.Events.SendResetPasswordEmail;
 
-public class SendResetPasswordEmailHandler : INotificationHandler<SendResetPasswordEmailEvent>
+public class SendResetPasswordEmailHandler : IRequestHandler<SendResetPasswordEmailEvent>
 {
     private readonly IEmailSenderService _emailSender;
     private readonly IAccountRepository _accountRepository;
@@ -28,6 +28,6 @@ public class SendResetPasswordEmailHandler : INotificationHandler<SendResetPassw
 
     private string SetUrl(string token, Guid userId)
     {
-        return $"http://localhost:5000/reset-password?token={token}&userId={userId}";
+        return $"<a href=http://localhost:5000/reset-password?token={token}&userId={userId}>Zresetuj hasło</a>";
     }
 }
