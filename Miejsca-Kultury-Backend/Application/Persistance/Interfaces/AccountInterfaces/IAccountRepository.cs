@@ -16,4 +16,5 @@ public interface IAccountRepository
     Task ConfirmAccountAsync(Guid userId, string token, CancellationToken cancellationToken);
     Task<ResetPasswordDto> GeneratePasswordTokenAsync(string email, CancellationToken cancellationToken);
     Task ResetPasswordAssync(string token, Guid userId, string password, CancellationToken cancellationToken);
+    Task UpdateUserImageAsync(Users user, CancellationToken cancellationToken);
 }

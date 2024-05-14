@@ -1,9 +1,10 @@
+using Application.CQRS.Image.Responses;
 using Application.Persistance.Interfaces.S3StorageInterfaces;
 using MediatR;
 
 namespace Application.CQRS.Image.Commands.UploadImage;
 
-public class UploadImageHandler : IRequestHandler<UploadImageCommand, Guid>
+public class UploadImageHandler : IRequestHandler<UploadImageCommand, UploadImageResponse>
 {
     private readonly IS3StorageService _s3StorageService;
 
@@ -12,7 +13,7 @@ public class UploadImageHandler : IRequestHandler<UploadImageCommand, Guid>
         _s3StorageService = storageService;
     }
     
-    public async Task<Guid> Handle(UploadImageCommand request, CancellationToken cancellationToken)
+    public async Task<UploadImageResponse> Handle(UploadImageCommand request, CancellationToken cancellationToken)
     {
         var uploadResult = await _s3StorageService.UploadFileAsync(request.Image, cancellationToken);
         var url = await _s3StorageService.GetFileUrl(uploadResult);
@@ -27,6 +28,6 @@ public class UploadImageHandler : IRequestHandler<UploadImageCommand, Guid>
         };
 
         var id = await _s3StorageService.SaveChangesAsync(image, cancellationToken);
-        return id;
+        return new UploadImageResponse(id , image);
     }
 }

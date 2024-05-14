@@ -119,7 +119,10 @@ public class AccountRepository : IAccountRepository
 
     public async Task<Users?> GetUserById(Guid id, CancellationToken cancellationToken)
     {
-        return await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        var user =  await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
+            ?? throw new UserNotFoundException();
+
+        return user;
     }
 
     public async Task<string> GenerateEmailConfirmTokenAsync(Users user, CancellationToken cancellationToken)
@@ -159,5 +162,11 @@ public class AccountRepository : IAccountRepository
 
         var result = await _userManager.ResetPasswordAsync(user, token, password);
         if (!result.Succeeded) throw new CreateUserException(result.Errors);
+    }
+
+    public async Task UpdateUserImageAsync(Users user, CancellationToken cancellationToken)
+    {
+        await _userManager.UpdateAsync(user);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }

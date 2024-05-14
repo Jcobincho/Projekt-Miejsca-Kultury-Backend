@@ -2,8 +2,12 @@ using Application.CQRS.Account.Commands.ConfirmAccount;
 using Application.CQRS.Account.Commands.CreateAccount;
 using Application.CQRS.Account.Commands.ResetPassword;
 using Application.CQRS.Account.Commands.SignIn;
+using Application.CQRS.Account.Commands.UploadProfileImage;
 using Application.CQRS.Account.Events.SendConfirmAccountEmail;
 using Application.CQRS.Account.Events.SendResetPasswordEmail;
+using Application.CQRS.Account.Static;
+using Application.CQRS.Image.Commands.UploadImage;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.Areas.Auth;
@@ -106,5 +110,21 @@ public class AccountController : BaseController
         await Mediator.Send(command, cancellationToken);
 
         return Ok("Hasło pomyślnie zmienione");
+    }
+
+    /// <summary>
+    /// Upload profile photo
+    /// </summary>
+    /// <param name="photo"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Authorize(Roles = UserRoles.User)]
+    [HttpPut("upload-profile-image")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UloadProfilePhoto(IFormFile photo, CancellationToken cancellationToken)
+    {
+        await Mediator.Send(new UploadProfileImageCommand(photo), cancellationToken);
+        return Ok("Dodano zdjęcie profilowe");
     }
 }
