@@ -36,6 +36,6 @@ public sealed class SendConfirmAccountEmailHandler : INotificationHandler<SendCo
 
     private string SetUrl(Guid userId, string token)
     {
-        return $"\"<a href=http://localhost:5000/reset-password?token={token}&userId={userId}>Aktywuj konto</a>";
+        return $"\"<a href=http://localhost:3000/reset-password?token={token}&userId={userId}>Aktywuj konto</a>";
     }
 }
