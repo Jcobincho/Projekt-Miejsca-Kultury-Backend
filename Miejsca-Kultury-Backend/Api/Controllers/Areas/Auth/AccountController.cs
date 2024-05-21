@@ -2,8 +2,13 @@ using Application.CQRS.Account.Commands.ConfirmAccount;
 using Application.CQRS.Account.Commands.CreateAccount;
 using Application.CQRS.Account.Commands.ResetPassword;
 using Application.CQRS.Account.Commands.SignIn;
+using Application.CQRS.Account.Commands.UploadProfileImage;
 using Application.CQRS.Account.Events.SendConfirmAccountEmail;
 using Application.CQRS.Account.Events.SendResetPasswordEmail;
+using Application.CQRS.Account.Responses;
+using Application.CQRS.Account.Static;
+using Application.CQRS.Image.Commands.UploadImage;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.Areas.Auth;
@@ -17,15 +22,15 @@ public class AccountController : BaseController
     /// <param name="command">Name, Surname, Email, Password, RepeatPassword</param>
     /// <param name="cancellationToken"></param>
     /// <returns> New user ID</returns>
-    [HttpPost("/register")]
+    [HttpPost("register")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAccount([FromBody] CreateAccountCommand command,
         CancellationToken cancellationToken)
     {
-        await Mediator.Send(command, cancellationToken);
+        var response = await Mediator.Send(command, cancellationToken);
 
-        return Ok("Konto utworzone pomyślnie!");
+        return Ok(response);
     }
 
     /// <summary>
@@ -34,14 +39,14 @@ public class AccountController : BaseController
     /// <param name="command"></param>
     /// <param name="cancellationToken">Email, Password</param>
     /// <returns>Token JWT</returns>
-    [HttpPost("/sign-in")]
+    [HttpPost("sign-in")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SignIn([FromBody] SignInCommand command, CancellationToken cancellationToken)
     {
-        var result = await Mediator.Send(command, cancellationToken);
+        var response = await Mediator.Send(command, cancellationToken);
 
-        return Ok(result);
+        return Ok(response);
     }
 
     /// <summary>
@@ -57,7 +62,7 @@ public class AccountController : BaseController
     {
         await Mediator.Send(new SendConfirmAccountEmailEvent(), cancellationToken);
 
-        return Ok("Sprawdź maila");
+        return Ok(new AccountResponse("Sprawdź maila!"));
     }
 
     /// <summary>
@@ -71,9 +76,9 @@ public class AccountController : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ConfirmAccount([FromBody] ConfirmAccountCommand command, CancellationToken cancellationToken)
     {
-        await Mediator.Send(command, cancellationToken);
+        var response = await Mediator.Send(command, cancellationToken);
 
-        return Ok("Pomyślnie zweryfikowano konto!");
+        return Ok(response);
     }
 
     /// <summary>
@@ -87,9 +92,9 @@ public class AccountController : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SendResetPasswordEmail([FromBody] SendResetPasswordEmailEvent @event, CancellationToken cancellationToken)
     {
-        await Mediator.Send(@event, cancellationToken);
+        var response = await Mediator.Send(@event, cancellationToken);
 
-        return Ok("Reset hasła możliwy na podanym e-mailu!");
+        return Ok(response);
     }
 
     /// <summary>
@@ -103,8 +108,24 @@ public class AccountController : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command, CancellationToken cancellationToken)
     {
-        await Mediator.Send(command, cancellationToken);
+        var response = await Mediator.Send(command, cancellationToken);
 
-        return Ok("Hasło pomyślnie zmienione");
+        return Ok(response);
+    }
+
+    /// <summary>
+    /// Upload profile photo
+    /// </summary>
+    /// <param name="photo"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Authorize(Roles = UserRoles.User)]
+    [HttpPut("upload-profile-image")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UploadProfilePhoto(IFormFile photo, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(new UploadProfileImageCommand(photo), cancellationToken);
+        return Ok(response);
     }
 }

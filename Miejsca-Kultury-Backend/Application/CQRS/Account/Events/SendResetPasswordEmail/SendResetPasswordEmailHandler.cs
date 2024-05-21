@@ -1,10 +1,11 @@
+using Application.CQRS.Account.Responses;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Application.Persistance.Interfaces.EmailInterfaces;
 using MediatR;
 
 namespace Application.CQRS.Account.Events.SendResetPasswordEmail;
 
-public class SendResetPasswordEmailHandler : IRequestHandler<SendResetPasswordEmailEvent>
+public class SendResetPasswordEmailHandler : IRequestHandler<SendResetPasswordEmailEvent, AccountResponse>
 {
     private readonly IEmailSenderService _emailSender;
     private readonly IAccountRepository _accountRepository;
@@ -15,7 +16,7 @@ public class SendResetPasswordEmailHandler : IRequestHandler<SendResetPasswordEm
         _accountRepository = accountRepository;
     }
     
-    public async Task Handle(SendResetPasswordEmailEvent @event, CancellationToken cancellationToken)
+    public async Task<AccountResponse> Handle(SendResetPasswordEmailEvent @event, CancellationToken cancellationToken)
     {
         var response = await _accountRepository.GeneratePasswordTokenAsync(@event.Email, cancellationToken);
 
@@ -24,6 +25,8 @@ public class SendResetPasswordEmailHandler : IRequestHandler<SendResetPasswordEm
         var message = "Kliknij ten link aby zresetować hasło " + Environment.NewLine + link;
 
         await _emailSender.SendEmailAsync(@event.Email, "Reset hasła", message);
+
+        return new AccountResponse("Wysłano link do resetu hasła na e-maila!");
     }
 
     private string SetUrl(string token, Guid userId)
