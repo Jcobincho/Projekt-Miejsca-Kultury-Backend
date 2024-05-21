@@ -31,6 +31,6 @@ public class SendResetPasswordEmailHandler : IRequestHandler<SendResetPasswordEm
 
     private string SetUrl(string token, Guid userId)
     {
-        return $"<a href=http://localhost:5000/reset-password?token={token}&userId={userId}>Zresetuj hasło</a>";
+        return $"<a href=http://localhost:3000/reset-password?token={token}&userId={userId}>Zresetuj hasło</a>";
     }
 }
