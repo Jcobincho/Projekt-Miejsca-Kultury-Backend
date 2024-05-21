@@ -8,6 +8,7 @@ using Domain.Authentication;
 using Domain.Entities;
 using Domain.Exceptions;
 using Domain.Exceptions.MessagesExceptions;
+using Infrastructure.Persistance.Account.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -167,6 +168,22 @@ public class AccountRepository : IAccountRepository
     public async Task UpdateUserImageAsync(Users user, CancellationToken cancellationToken)
     {
         await _userManager.UpdateAsync(user);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<Image> GetImageKeyAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        var S3Key = await _userManager.Users.Include(u => u.Image)
+            .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
+
+        if (S3Key.Image.S3Key is null) throw new S3KeyException();
+
+        return S3Key.Image;
+    }
+
+    public async Task DeleteUserImageAsync(Image image, CancellationToken cancellationToken)
+    {
+        _context.Images.Remove(image);
         await _context.SaveChangesAsync(cancellationToken);
     }
 }

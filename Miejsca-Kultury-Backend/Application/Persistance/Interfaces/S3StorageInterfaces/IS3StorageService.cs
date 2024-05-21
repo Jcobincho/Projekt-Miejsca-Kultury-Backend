@@ -6,7 +6,8 @@ namespace Application.Persistance.Interfaces.S3StorageInterfaces;
 public interface IS3StorageService
 {
     Task<string> UploadFileAsync(IFormFile file, CancellationToken cancellationToken);
-    Task<string> GetFileUrl(string fileKey);
+    String GetFileUrl(string fileKey);
     Task<MemoryStream> GetFileAsync(string fileKey, CancellationToken cancellationToken);
     Task<Guid> SaveChangesAsync(Image image, CancellationToken cancellationToken);
+    Task DeleteFileAsync(string s3Key, CancellationToken cancellationToken);
 }

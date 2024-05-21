@@ -122,7 +122,7 @@ public class AccountController : BaseController
     [HttpPut("upload-profile-image")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> UloadProfilePhoto(IFormFile photo, CancellationToken cancellationToken)
+    public async Task<IActionResult> UploadProfilePhoto(IFormFile photo, CancellationToken cancellationToken)
     {
         await Mediator.Send(new UploadProfileImageCommand(photo), cancellationToken);
         return Ok("Dodano zdjęcie profilowe");

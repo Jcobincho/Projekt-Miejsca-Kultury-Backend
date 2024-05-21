@@ -1,3 +1,4 @@
+using Application.CQRS.Image.Commands.DeleteImage;
 using Application.CQRS.Image.Commands.UploadImage;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using MediatR;
@@ -23,6 +24,13 @@ public sealed class UploadProfileImageHandler : IRequestHandler<UploadProfileIma
 
         var user = await _accountRepository.GetUserById(userId, cancellationToken);
 
+        if (user.ImageId != null)
+        {
+            var image = await _accountRepository.GetImageKeyAsync(userId, cancellationToken);
+            await _mediator.Send(new DeleteImageCommand(image.S3Key), cancellationToken);
+            await _accountRepository.DeleteUserImageAsync(image, cancellationToken);
+        }
+        
         var fileResult = await _mediator.Send(new UploadImageCommand(request.Photo), cancellationToken);
 
         user.ImageId = fileResult.Id;

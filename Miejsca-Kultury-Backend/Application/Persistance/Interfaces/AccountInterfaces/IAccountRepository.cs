@@ -2,6 +2,7 @@ using System.Security.Claims;
 using Application.CQRS.Account.DTO;
 using Domain.Authentication;
 using Domain.Entities;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Application.Persistance.Interfaces.AccountInterfaces;
 
@@ -17,4 +18,6 @@ public interface IAccountRepository
     Task<ResetPasswordDto> GeneratePasswordTokenAsync(string email, CancellationToken cancellationToken);
     Task ResetPasswordAssync(string token, Guid userId, string password, CancellationToken cancellationToken);
     Task UpdateUserImageAsync(Users user, CancellationToken cancellationToken);
+    Task<Image> GetImageKeyAsync(Guid userId, CancellationToken cancellationToken);
+    Task DeleteUserImageAsync(Image image, CancellationToken cancellationToken);
 }

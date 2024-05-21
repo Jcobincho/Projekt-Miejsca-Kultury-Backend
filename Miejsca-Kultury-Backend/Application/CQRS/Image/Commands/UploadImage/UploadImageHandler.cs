@@ -16,7 +16,7 @@ public class UploadImageHandler : IRequestHandler<UploadImageCommand, UploadImag
     public async Task<UploadImageResponse> Handle(UploadImageCommand request, CancellationToken cancellationToken)
     {
         var uploadResult = await _s3StorageService.UploadFileAsync(request.Image, cancellationToken);
-        var url = await _s3StorageService.GetFileUrl(uploadResult);
+        var url = _s3StorageService.GetFileUrl(uploadResult);
 
         var image = new Domain.Entities.Image
         {

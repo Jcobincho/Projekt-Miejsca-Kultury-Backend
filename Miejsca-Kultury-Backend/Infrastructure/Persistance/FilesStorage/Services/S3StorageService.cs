@@ -74,7 +74,7 @@ public class S3StorageService : IS3StorageService
         return uniqueFileName;
     }
 
-    public async Task<string> GetFileUrl(string fileKey)
+    public string GetFileUrl(string fileKey)
     {
         try
         {
@@ -85,7 +85,7 @@ public class S3StorageService : IS3StorageService
                 Expires = DateTime.MaxValue
             };
 
-            var url = await _s3Client.GetPreSignedURLAsync(request);
+            var url = _s3Client.GetPreSignedURL(request);
             return url;
         }
         catch (AmazonS3Exception e)
@@ -133,5 +133,25 @@ public class S3StorageService : IS3StorageService
         await _context.SaveChangesAsync(cancellationToken);
 
         return image.Id;
+    }
+
+    public async Task DeleteFileAsync(string s3Key, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await _s3Client.DeleteObjectAsync(new DeleteObjectRequest
+            {
+                BucketName = _s3Config.BucketName,
+                Key = s3Key
+            }, cancellationToken);
+        }
+        catch (AmazonS3Exception e)
+        {
+            throw new S3UploadException(e.ErrorCode);
+        }
+        catch (Exception e)
+        {
+            throw new S3UnknownException();
+        }
     }
 }
