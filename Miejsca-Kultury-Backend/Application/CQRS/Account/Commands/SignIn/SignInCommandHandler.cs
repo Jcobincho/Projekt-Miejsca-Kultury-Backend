@@ -1,3 +1,4 @@
+using Application.CQRS.Image.Queries;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Authentication;
 using Domain.Entities;
@@ -5,6 +6,7 @@ using Domain.Exceptions;
 using Domain.Exceptions.MessagesExceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Application.CQRS.Account.Commands.SignIn;
 
@@ -13,12 +15,14 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, JsonWebToken>
     private readonly SignInManager<Users> _signInManager;
     private readonly UserManager<Users> _userManager;
     private readonly IAccountRepository _accountRepository;
+    private readonly IMediator _mediator;
 
-    public SignInCommandHandler(SignInManager<Users> signInManager, UserManager<Users> userManager, IAccountRepository accountRepository)
+    public SignInCommandHandler(SignInManager<Users> signInManager, UserManager<Users> userManager, IAccountRepository accountRepository, IMediator mediator)
     {
         _signInManager = signInManager;
         _userManager = userManager;
         _accountRepository = accountRepository;
+        _mediator = mediator;
     }
 
     public async Task<JsonWebToken> Handle(SignInCommand request, CancellationToken cancellationToken)
@@ -34,7 +38,15 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, JsonWebToken>
         var userClaims = await _userManager.GetClaimsAsync(user);
 
         var jwt = _accountRepository.GenerateJwtToken(user.Id, user.Email, userRoles, userClaims);
+        
+        jwt.Name = user.Name;
+        jwt.Surname = user.Surname;
 
+        if (user.ImageId != null)
+        {
+            jwt.AvatarUrl = await _mediator.Send(new GetUserAvatarQuery(user.Image.S3Key), cancellationToken);
+        }
+        
         return jwt;
     }
 }

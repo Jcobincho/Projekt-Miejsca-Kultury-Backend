@@ -1,3 +1,4 @@
+using Application.CQRS.Account.Responses;
 using Application.CQRS.Image.Commands.DeleteImage;
 using Application.CQRS.Image.Commands.UploadImage;
 using Application.Persistance.Interfaces.AccountInterfaces;
@@ -5,7 +6,7 @@ using MediatR;
 
 namespace Application.CQRS.Account.Commands.UploadProfileImage;
 
-public sealed class UploadProfileImageHandler : IRequestHandler<UploadProfileImageCommand>
+public sealed class UploadProfileImageHandler : IRequestHandler<UploadProfileImageCommand, AccountResponse>
 {
     private readonly IAccountRepository _accountRepository;
     private readonly IMediator _mediator;
@@ -18,7 +19,7 @@ public sealed class UploadProfileImageHandler : IRequestHandler<UploadProfileIma
         _currentUserService = currentUserService;
     }
     
-    public async Task Handle(UploadProfileImageCommand request, CancellationToken cancellationToken)
+    public async Task<AccountResponse> Handle(UploadProfileImageCommand request, CancellationToken cancellationToken)
     {
         var userId = _currentUserService.UserId;
 
@@ -35,5 +36,7 @@ public sealed class UploadProfileImageHandler : IRequestHandler<UploadProfileIma
 
         user.ImageId = fileResult.Id;
         await _accountRepository.UpdateUserImageAsync(user, cancellationToken);
+
+        return new AccountResponse("Pomyślnie zmioniono zdjęcie profilowe!");
     }
 }

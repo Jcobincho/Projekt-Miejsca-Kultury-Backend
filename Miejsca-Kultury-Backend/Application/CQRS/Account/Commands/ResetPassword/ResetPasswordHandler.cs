@@ -1,9 +1,10 @@
+using Application.CQRS.Account.Responses;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using MediatR;
 
 namespace Application.CQRS.Account.Commands.ResetPassword;
 
-public class ResetPasswordHandler : IRequestHandler<ResetPasswordCommand>
+public class ResetPasswordHandler : IRequestHandler<ResetPasswordCommand, AccountResponse>
 {
     private readonly IAccountRepository _accountRepository;
 
@@ -12,9 +13,11 @@ public class ResetPasswordHandler : IRequestHandler<ResetPasswordCommand>
         _accountRepository = accountRepository;
     }
     
-    public async Task Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
+    public async Task<AccountResponse> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
     {
         await _accountRepository.ResetPasswordAssync(request.Token, request.UserId, request.Password,
             cancellationToken);
+
+        return new AccountResponse("Pomyślnie zmieniono hasło!");
     }
 }

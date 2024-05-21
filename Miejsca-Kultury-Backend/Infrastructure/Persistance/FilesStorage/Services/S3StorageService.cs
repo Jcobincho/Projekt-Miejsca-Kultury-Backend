@@ -86,6 +86,8 @@ public class S3StorageService : IS3StorageService
             };
 
             var url = _s3Client.GetPreSignedURL(request);
+            url = url.Replace("https", "http");
+            url = url.Replace("minio:9000", "localhost:9000");
             return url;
         }
         catch (AmazonS3Exception e)

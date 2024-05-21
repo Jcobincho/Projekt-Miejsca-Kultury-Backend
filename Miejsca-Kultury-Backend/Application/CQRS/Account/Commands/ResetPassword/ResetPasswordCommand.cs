@@ -1,3 +1,4 @@
+using Application.CQRS.Account.Responses;
 using MediatR;
 
 namespace Application.CQRS.Account.Commands.ResetPassword;
@@ -7,4 +8,4 @@ public record ResetPasswordCommand(
     Guid UserId,
     string Password,
     string ConfirmedPassword
-    ) : IRequest;
+    ) : IRequest<AccountResponse>;

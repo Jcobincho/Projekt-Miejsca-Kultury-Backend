@@ -60,7 +60,8 @@ public class AccountRepository : IAccountRepository
 
     public async Task<Users> FindUserAsync(string email, CancellationToken cancellationToken)
     {
-        return await _context.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        return await _context.Users.Include(x => x.Image)
+            .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
     }
 
     public JsonWebToken GenerateJwtToken(Guid userId, string email, ICollection<string> roles, ICollection<Claim> claims)
