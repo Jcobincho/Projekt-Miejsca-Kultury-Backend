@@ -7,7 +7,6 @@ using Application.CQRS.Account.Events.SendConfirmAccountEmail;
 using Application.CQRS.Account.Events.SendResetPasswordEmail;
 using Application.CQRS.Account.Responses;
 using Application.CQRS.Account.Static;
-using Application.CQRS.Image.Commands.UploadImage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -120,7 +119,7 @@ public class AccountController : BaseController
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [Authorize(Roles = UserRoles.User)]
-    [HttpPut("upload-profile-image")]
+    [HttpPut("upload-profile-avatarImage")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UploadProfilePhoto(IFormFile photo, CancellationToken cancellationToken)

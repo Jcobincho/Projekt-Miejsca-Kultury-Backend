@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MiejscaKulturyDbContext))]
-    [Migration("20240423013508_probanumermilionxd")]
-    partial class probanumermilionxd
+    [Migration("20240527223457_czwartaXD")]
+    partial class czwartaXD
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,149 +25,34 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.Comments", b =>
+            modelBuilder.Entity("Domain.Entities.AvatarImage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Comment")
+                    b.Property<string>("ContentType")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("PlaceId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PlacesId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlacesId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Likes", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("Like")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid?>("PlaceId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PlacesId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlacesId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("Like");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Opens", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Fridady")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Monday")
+                    b.Property<string>("S3Key")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("PlaceId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PlacesId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Saturday")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Sunday")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Thursday")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Tuesday")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Wednesday")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlacesId");
-
-                    b.ToTable("Open");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Photos", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("FileSize")
+                    b.Property<long>("TotalBytes")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("MinioPath")
+                    b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("PlaceId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PlacesId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("PlacesId");
-
-                    b.ToTable("Photo");
+                    b.ToTable("AvagarImages");
                 });
 
             modelBuilder.Entity("Domain.Entities.Places", b =>
@@ -176,21 +61,20 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<int>("AverageRatings")
+                    b.Property<int>("Category")
                         .HasColumnType("integer");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("Localization")
+                    b.Property<double>("LocalizationX")
                         .HasColumnType("double precision");
 
-                    b.Property<string>("Name")
+                    b.Property<double>("LocalizationY")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -207,34 +91,39 @@ namespace Infrastructure.Migrations
                     b.ToTable("Place");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Reviews", b =>
+            modelBuilder.Entity("Domain.Entities.PostImage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("PlaceId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<Guid>("PlacesId")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Review")
-                        .HasColumnType("integer");
+                    b.Property<string>("S3Key")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
+                    b.Property<long>("TotalBytes")
+                        .HasColumnType("bigint");
 
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PlacesId");
 
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("Review");
+                    b.ToTable("PostImages");
                 });
 
             modelBuilder.Entity("Domain.Entities.Users", b =>
@@ -245,6 +134,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
+
+                    b.Property<Guid?>("AvatarImageId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -299,6 +191,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AvatarImageId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -440,66 +334,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Comments", b =>
-                {
-                    b.HasOne("Domain.Entities.Places", "Places")
-                        .WithMany()
-                        .HasForeignKey("PlacesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Users", "Users")
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Places");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Likes", b =>
-                {
-                    b.HasOne("Domain.Entities.Places", "Places")
-                        .WithMany()
-                        .HasForeignKey("PlacesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Users", "Users")
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Places");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Opens", b =>
-                {
-                    b.HasOne("Domain.Entities.Places", "Places")
-                        .WithMany()
-                        .HasForeignKey("PlacesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Places");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Photos", b =>
-                {
-                    b.HasOne("Domain.Entities.Places", "Places")
-                        .WithMany()
-                        .HasForeignKey("PlacesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Places");
-                });
-
             modelBuilder.Entity("Domain.Entities.Places", b =>
                 {
                     b.HasOne("Domain.Entities.Users", "Users")
@@ -511,7 +345,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Reviews", b =>
+            modelBuilder.Entity("Domain.Entities.PostImage", b =>
                 {
                     b.HasOne("Domain.Entities.Places", "Places")
                         .WithMany()
@@ -519,15 +353,16 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Users", "Users")
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Places");
+                });
 
-                    b.Navigation("Users");
+            modelBuilder.Entity("Domain.Entities.Users", b =>
+                {
+                    b.HasOne("Domain.Entities.AvatarImage", "AvatarImage")
+                        .WithMany()
+                        .HasForeignKey("AvatarImageId");
+
+                    b.Navigation("AvatarImage");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

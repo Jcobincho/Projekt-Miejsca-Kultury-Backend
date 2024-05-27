@@ -129,12 +129,12 @@ public class S3StorageService : IS3StorageService
         }
     }
 
-    public async Task<Guid> SaveChangesAsync(Image image, CancellationToken cancellationToken)
+    public async Task<Guid> SaveChangesAsync(Avatarimage avatarImage, CancellationToken cancellationToken)
     {
-        await _context.AddAsync(image, cancellationToken);
+        await _context.AddAsync(avatarImage, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return image.Id;
+        return avatarImage.Id;
     }
 
     public async Task DeleteFileAsync(string s3Key, CancellationToken cancellationToken)
@@ -155,5 +155,11 @@ public class S3StorageService : IS3StorageService
         {
             throw new S3UnknownException();
         }
+    }
+
+    public async Task SavePostImageAsync(Postimage image, CancellationToken cancellationToken)
+    {
+        await _context.AddAsync(image, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }

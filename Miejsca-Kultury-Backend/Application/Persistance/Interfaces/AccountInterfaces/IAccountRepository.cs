@@ -18,6 +18,6 @@ public interface IAccountRepository
     Task<ResetPasswordDto> GeneratePasswordTokenAsync(string email, CancellationToken cancellationToken);
     Task ResetPasswordAssync(string token, Guid userId, string password, CancellationToken cancellationToken);
     Task UpdateUserImageAsync(Users user, CancellationToken cancellationToken);
-    Task<Image> GetImageKeyAsync(Guid userId, CancellationToken cancellationToken);
-    Task DeleteUserImageAsync(Image image, CancellationToken cancellationToken);
+    Task<Avatarimage> GetImageKeyAsync(Guid userId, CancellationToken cancellationToken);
+    Task DeleteUserImageAsync(Avatarimage avatarImage, CancellationToken cancellationToken);
 }
