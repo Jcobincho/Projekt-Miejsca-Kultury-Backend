@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Application.CQRS.Account.DTO;
+using Application.CQRS.Account.Exceptions;
 using Application.CQRS.Account.Static;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Authentication;
@@ -186,5 +187,14 @@ public class AccountRepository : IAccountRepository
     {
         _context.AvagarImages.Remove(avatarImage);
         await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task AddAdminRoleAsync(string email, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken)
+                   ?? throw new EmailNotExistException();
+
+        var addUserRole = await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+        if (!addUserRole.Succeeded) throw new AddToRoleException();
     }
 }

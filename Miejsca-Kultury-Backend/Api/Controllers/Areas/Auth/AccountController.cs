@@ -1,3 +1,4 @@
+using Application.CQRS.Account.Commands.AddAdminRole;
 using Application.CQRS.Account.Commands.ConfirmAccount;
 using Application.CQRS.Account.Commands.CreateAccount;
 using Application.CQRS.Account.Commands.ResetPassword;
@@ -125,6 +126,17 @@ public class AccountController : BaseController
     public async Task<IActionResult> UploadProfilePhoto(IFormFile photo, CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(new UploadProfileImageCommand(photo), cancellationToken);
+        return Ok(response);
+    }
+
+    [Authorize(Roles = UserRoles.Admin)]
+    [HttpPut("add-admin-role")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> AddAdminRole([FromBody] AddAdminRoleCommand command, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(command, cancellationToken);
+
         return Ok(response);
     }
 }

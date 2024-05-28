@@ -20,4 +20,5 @@ public interface IAccountRepository
     Task UpdateUserImageAsync(Users user, CancellationToken cancellationToken);
     Task<Avatarimage> GetImageKeyAsync(Guid userId, CancellationToken cancellationToken);
     Task DeleteUserImageAsync(Avatarimage avatarImage, CancellationToken cancellationToken);
+    Task AddAdminRoleAsync(string email, CancellationToken cancellationToken);
 }
