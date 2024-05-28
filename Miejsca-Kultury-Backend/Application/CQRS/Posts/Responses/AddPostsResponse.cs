@@ -1,3 +1,3 @@
-namespace Application.CQRS.Posts.Commands.Responses;
+namespace Application.CQRS.Posts.Responses;
 
 public record AddPostsResponse(string Message, Guid PostId);
