@@ -66,7 +66,7 @@ public class AccountRepository : IAccountRepository
 
     public JsonWebToken GenerateJwtToken(Guid userId, string email, ICollection<string> roles, ICollection<Claim> claims)
     {
-        var now = DateTime.UtcNow;
+        var now = System.DateTime.UtcNow;
         
         var jwtClaims = new List<Claim>()
         {

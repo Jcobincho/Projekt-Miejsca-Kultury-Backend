@@ -1,5 +1,7 @@
 using Application.Persistance.Interfaces.PostsInterfaces;
 using Domain.Entities;
+using Infrastructure.Persistance.Posts.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistance.Posts.PostsRepositories;
 
@@ -17,5 +19,17 @@ public class PostsRepository : IPostsRepository
         await _context.AddAsync(place, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
-    
+
+    public async Task IsPostExistAsync(Guid postId, CancellationToken cancellationToken)
+    {
+        var post = await _context.Place.FirstOrDefaultAsync(x => x.Id == postId, cancellationToken);
+
+        if (post is null) throw new PostNotFoundException();
+    }
+
+    public async Task AddCommentAsync(Comments comment, CancellationToken cancellationToken)
+    {
+        await _context.Comment.AddAsync(comment, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 }

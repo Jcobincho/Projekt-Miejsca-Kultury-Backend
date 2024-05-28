@@ -82,7 +82,7 @@ public class S3StorageService : IS3StorageService
             {
                 BucketName = _s3Config.BucketName,
                 Key = fileKey,
-                Expires = DateTime.MaxValue
+                Expires = System.DateTime.MaxValue
             };
 
             var url = _s3Client.GetPreSignedURL(request);
