@@ -2,6 +2,7 @@ using System.Text;
 using Application.CQRS.Account.Commands.SignIn;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Application.Persistance.Interfaces.EmailInterfaces;
+using Application.Persistance.Interfaces.PostsInterfaces;
 using Application.Persistance.Interfaces.S3StorageInterfaces;
 using Domain.Authentication;
 using Domain.Entities;
@@ -10,6 +11,7 @@ using Infrastructure.Persistance;
 using Infrastructure.Persistance.Account.AccountRepositories;
 using Infrastructure.Persistance.FilesStorage.Configuration;
 using Infrastructure.Persistance.FilesStorage.Services;
+using Infrastructure.Persistance.Posts.PostsRepositories;
 using Infrastructure.Persistance.Repositories.Email.Configuration;
 using Infrastructure.Persistance.Repositories.Email.EmailRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -60,6 +62,7 @@ public static class DependencyInjection
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IEmailSenderService, EmailSenderService>();
         services.AddScoped<IS3StorageService, S3StorageService>();
+        services.AddScoped<IPostsRepository, PostsRepository>();
 
         var smtpConfig = new SmtpConfig();
         configuration.GetSection("SMTP").Bind(smtpConfig);

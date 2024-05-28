@@ -2,30 +2,31 @@ using Application.CQRS.Image.Responses;
 using Application.Persistance.Interfaces.S3StorageInterfaces;
 using MediatR;
 
-namespace Application.CQRS.Image.Commands.UploadImage;
+namespace Application.CQRS.Image.Commands.UploadAvatarImage;
 
-public class UploadImageHandler : IRequestHandler<UploadImageCommand, UploadImageResponse>
+public class UploadAvatarImageHandler : IRequestHandler<UploadAvatarImageCommand, UploadImageResponse>
 {
     private readonly IS3StorageService _s3StorageService;
 
-    public UploadImageHandler(IS3StorageService storageService)
+    public UploadAvatarImageHandler(IS3StorageService storageService)
     {
         _s3StorageService = storageService;
     }
     
-    public async Task<UploadImageResponse> Handle(UploadImageCommand request, CancellationToken cancellationToken)
+    public async Task<UploadImageResponse> Handle(UploadAvatarImageCommand request, CancellationToken cancellationToken)
     {
         var uploadResult = await _s3StorageService.UploadFileAsync(request.Image, cancellationToken);
         var url = _s3StorageService.GetFileUrl(uploadResult);
 
-        var image = new Domain.Entities.Image
+        var image = new Domain.Entities.Avatarimage
         {
             Name = request.Image.Name,
             ContentType = request.Image.ContentType,
             TotalBytes = request.Image.Length,
             S3Key = uploadResult,
-            Url = url
+            Url = url,
         };
+        
 
         var id = await _s3StorageService.SaveChangesAsync(image, cancellationToken);
         return new UploadImageResponse(id , image);

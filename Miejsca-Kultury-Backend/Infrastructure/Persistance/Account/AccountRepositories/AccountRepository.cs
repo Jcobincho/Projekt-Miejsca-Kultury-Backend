@@ -60,7 +60,7 @@ public class AccountRepository : IAccountRepository
 
     public async Task<Users> FindUserAsync(string email, CancellationToken cancellationToken)
     {
-        return await _context.Users.Include(x => x.Image)
+        return await _context.Users.Include(x => x.Avatarimage)
             .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
     }
 
@@ -172,19 +172,19 @@ public class AccountRepository : IAccountRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<Image> GetImageKeyAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<Avatarimage> GetImageKeyAsync(Guid userId, CancellationToken cancellationToken)
     {
-        var S3Key = await _userManager.Users.Include(u => u.Image)
+        var S3Key = await _userManager.Users.Include(u => u.Avatarimage)
             .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
 
-        if (S3Key.Image.S3Key is null) throw new S3KeyException();
+        if (S3Key.Avatarimage.S3Key is null) throw new S3KeyException();
 
-        return S3Key.Image;
+        return S3Key.Avatarimage;
     }
 
-    public async Task DeleteUserImageAsync(Image image, CancellationToken cancellationToken)
+    public async Task DeleteUserImageAsync(Avatarimage avatarImage, CancellationToken cancellationToken)
     {
-        _context.Images.Remove(image);
+        _context.AvagarImages.Remove(avatarImage);
         await _context.SaveChangesAsync(cancellationToken);
     }
 }

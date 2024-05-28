@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class probanumermilionxd : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,30 +27,19 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "AvagarImages",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Surname = table.Column<string>(type: "text", nullable: false),
-                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
-                    PasswordHash = table.Column<string>(type: "text", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
+                    ContentType = table.Column<string>(type: "text", nullable: false),
+                    TotalBytes = table.Column<long>(type: "bigint", nullable: false),
+                    S3Key = table.Column<string>(type: "text", nullable: false),
+                    Url = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_AvagarImages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,6 +61,39 @@ namespace Infrastructure.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Surname = table.Column<string>(type: "text", nullable: false),
+                    AvatarimageId = table.Column<Guid>(type: "uuid", nullable: true),
+                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_AvagarImages_AvatarimageId",
+                        column: x => x.AvatarimageId,
+                        principalTable: "AvagarImages",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -164,13 +186,12 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    AverageRatings = table.Column<int>(type: "integer", nullable: false),
-                    Category = table.Column<string>(type: "text", nullable: false),
-                    Localization = table.Column<double>(type: "double precision", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    UsersId = table.Column<Guid>(type: "uuid", nullable: false)
+                    Category = table.Column<int>(type: "integer", nullable: false),
+                    LocalizationX = table.Column<double>(type: "double precision", nullable: false),
+                    LocalizationY = table.Column<double>(type: "double precision", nullable: false),
+                    UsersId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -179,138 +200,26 @@ namespace Infrastructure.Migrations
                         name: "FK_Place_AspNetUsers_UsersId",
                         column: x => x.UsersId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "PostImages",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Comment = table.Column<string>(type: "text", nullable: false),
-                    PlaceId = table.Column<Guid>(type: "uuid", nullable: true),
-                    PlacesId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    UsersId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comment_AspNetUsers_UsersId",
-                        column: x => x.UsersId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comment_Place_PlacesId",
-                        column: x => x.PlacesId,
-                        principalTable: "Place",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Like",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Like = table.Column<bool>(type: "boolean", nullable: false),
-                    PlaceId = table.Column<Guid>(type: "uuid", nullable: true),
-                    PlacesId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    UsersId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Like", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Like_AspNetUsers_UsersId",
-                        column: x => x.UsersId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Like_Place_PlacesId",
-                        column: x => x.PlacesId,
-                        principalTable: "Place",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Open",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Monday = table.Column<string>(type: "text", nullable: false),
-                    Tuesday = table.Column<string>(type: "text", nullable: false),
-                    Wednesday = table.Column<string>(type: "text", nullable: false),
-                    Thursday = table.Column<string>(type: "text", nullable: false),
-                    Fridady = table.Column<string>(type: "text", nullable: false),
-                    Saturday = table.Column<string>(type: "text", nullable: false),
-                    Sunday = table.Column<string>(type: "text", nullable: false),
-                    PlaceId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    ContentType = table.Column<string>(type: "text", nullable: false),
+                    TotalBytes = table.Column<long>(type: "bigint", nullable: false),
+                    S3Key = table.Column<string>(type: "text", nullable: false),
+                    Url = table.Column<string>(type: "text", nullable: false),
                     PlacesId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Open", x => x.Id);
+                    table.PrimaryKey("PK_PostImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Open_Place_PlacesId",
-                        column: x => x.PlacesId,
-                        principalTable: "Place",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Photo",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FileName = table.Column<string>(type: "text", nullable: false),
-                    MinioPath = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
-                    FileSize = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    PlaceId = table.Column<Guid>(type: "uuid", nullable: true),
-                    PlacesId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Photo", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Photo_Place_PlacesId",
-                        column: x => x.PlacesId,
-                        principalTable: "Place",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Review",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Review = table.Column<int>(type: "integer", nullable: false),
-                    PlaceId = table.Column<Guid>(type: "uuid", nullable: true),
-                    PlacesId = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    UsersId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Review", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Review_AspNetUsers_UsersId",
-                        column: x => x.UsersId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Review_Place_PlacesId",
+                        name: "FK_PostImages_Place_PlacesId",
                         column: x => x.PlacesId,
                         principalTable: "Place",
                         principalColumn: "Id",
@@ -349,40 +258,15 @@ namespace Infrastructure.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_AvatarimageId",
+                table: "AspNetUsers",
+                column: "AvatarimageId");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comment_PlacesId",
-                table: "Comment",
-                column: "PlacesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comment_UsersId",
-                table: "Comment",
-                column: "UsersId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Like_PlacesId",
-                table: "Like",
-                column: "PlacesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Like_UsersId",
-                table: "Like",
-                column: "UsersId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Open_PlacesId",
-                table: "Open",
-                column: "PlacesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Photo_PlacesId",
-                table: "Photo",
-                column: "PlacesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Place_UsersId",
@@ -390,14 +274,9 @@ namespace Infrastructure.Migrations
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Review_PlacesId",
-                table: "Review",
+                name: "IX_PostImages_PlacesId",
+                table: "PostImages",
                 column: "PlacesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Review_UsersId",
-                table: "Review",
-                column: "UsersId");
         }
 
         /// <inheritdoc />
@@ -419,19 +298,7 @@ namespace Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Comment");
-
-            migrationBuilder.DropTable(
-                name: "Like");
-
-            migrationBuilder.DropTable(
-                name: "Open");
-
-            migrationBuilder.DropTable(
-                name: "Photo");
-
-            migrationBuilder.DropTable(
-                name: "Review");
+                name: "PostImages");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -441,6 +308,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "AvagarImages");
         }
     }
 }

@@ -2,8 +2,8 @@ using Application.CQRS.Image.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
-namespace Application.CQRS.Image.Commands.UploadImage;
+namespace Application.CQRS.Image.Commands.UploadAvatarImage;
 
-public record UploadImageCommand(
+public record UploadAvatarImageCommand(
     IFormFile Image
     ) : IRequest<UploadImageResponse>;

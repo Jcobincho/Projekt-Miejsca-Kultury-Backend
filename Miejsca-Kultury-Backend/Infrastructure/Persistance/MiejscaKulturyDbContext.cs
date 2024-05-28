@@ -9,13 +9,9 @@ public class MiejscaKulturyDbContext : IdentityDbContext<Users, IdentityRole<Gui
 {
     public MiejscaKulturyDbContext(DbContextOptions<MiejscaKulturyDbContext> options): base(options){}
     
-    public DbSet<Likes> Like { get; set; }
-    public DbSet<Opens> Open { get; set; }
-    public DbSet<Photos> Photo { get; set; }
     public DbSet<Places> Place { get; set; }
-    public DbSet<Reviews> Review { get; set; }
-    public DbSet<Comments> Comment { get; set; }
-    public DbSet<Image> Images { get; set; }
+    public DbSet<Avatarimage> AvagarImages { get; set; }
+    public DbSet<Postimage> PostImages { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

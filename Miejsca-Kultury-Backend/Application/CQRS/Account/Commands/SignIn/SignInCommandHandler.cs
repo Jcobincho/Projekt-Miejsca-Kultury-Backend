@@ -42,9 +42,9 @@ public class SignInCommandHandler : IRequestHandler<SignInCommand, JsonWebToken>
         jwt.Name = user.Name;
         jwt.Surname = user.Surname;
 
-        if (user.ImageId != null)
+        if (user.AvatarimageId != null)
         {
-            jwt.AvatarUrl = await _mediator.Send(new GetUserAvatarQuery(user.Image.S3Key), cancellationToken);
+            jwt.AvatarUrl = await _mediator.Send(new GetUserAvatarQuery(user.Avatarimage.S3Key), cancellationToken);
         }
         
         return jwt;

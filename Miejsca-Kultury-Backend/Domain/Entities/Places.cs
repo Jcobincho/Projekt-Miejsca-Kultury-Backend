@@ -1,14 +1,19 @@
+using Domain.Enums;
+
 namespace Domain.Entities;
 
 public class Places
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
+    public string Title { get; set; }
     public string Description { get; set; }
-    public int AverageRatings { get; set; }
-    public string Category { get; set; }
-    public double Localization { get; set; }
-
-    public Guid? UserId { get; set; }
+    //Tu ma być prop do oceny
+    //Tu ma być prop do komentarzy
+    //Tu ma być prop do lików
+    public PlacesCategory Category { get; set; }
+    public double LocalizationX { get; set; }
+    public double LocalizationY { get; set; }
+    
+    public Guid? UsersId { get; set; }
     public Users Users { get; set; }
 }
