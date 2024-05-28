@@ -31,7 +31,7 @@ public class AddPostsHandler : IRequestHandler<AddPostsCommand, AddPostsResponse
             Category = request.Category,
             LocalizationX = request.LocalizationX,
             LocalizationY = request.LocalizationY,
-            UserId = userId
+            UsersId = userId
         };
         
         await _postsRepository.AddPostAsync(post, cancellationToken);

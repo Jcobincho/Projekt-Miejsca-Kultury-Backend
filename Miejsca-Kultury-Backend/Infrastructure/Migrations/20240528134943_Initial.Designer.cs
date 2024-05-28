@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MiejscaKulturyDbContext))]
-    [Migration("20240527224159_mordo")]
-    partial class mordo
+    [Migration("20240528134943_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,10 +78,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UsersId")
+                    b.Property<Guid?>("UsersId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -338,9 +335,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Users", "Users")
                         .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsersId");
 
                     b.Navigation("Users");
                 });

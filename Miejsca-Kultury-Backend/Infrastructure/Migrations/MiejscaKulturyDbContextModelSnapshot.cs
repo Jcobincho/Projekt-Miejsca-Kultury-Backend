@@ -75,10 +75,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UsersId")
+                    b.Property<Guid?>("UsersId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -335,9 +332,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Users", "Users")
                         .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsersId");
 
                     b.Navigation("Users");
                 });

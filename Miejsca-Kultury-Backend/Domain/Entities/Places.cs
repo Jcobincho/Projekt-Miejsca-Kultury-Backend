@@ -14,6 +14,6 @@ public class Places
     public double LocalizationX { get; set; }
     public double LocalizationY { get; set; }
     
-    public Guid? UserId { get; set; }
+    public Guid? UsersId { get; set; }
     public Users Users { get; set; }
 }

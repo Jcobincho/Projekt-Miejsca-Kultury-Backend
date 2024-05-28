@@ -27,11 +27,10 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Images",
+                name: "AvagarImages",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    PlacesId = table.Column<Guid>(type: "uuid", nullable: true),
                     Name = table.Column<string>(type: "text", nullable: false),
                     ContentType = table.Column<string>(type: "text", nullable: false),
                     TotalBytes = table.Column<long>(type: "bigint", nullable: false),
@@ -40,7 +39,7 @@ namespace Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.PrimaryKey("PK_AvagarImages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,7 +70,7 @@ namespace Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Surname = table.Column<string>(type: "text", nullable: false),
-                    ImageId = table.Column<Guid>(type: "uuid", nullable: true),
+                    AvatarimageId = table.Column<Guid>(type: "uuid", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -91,9 +90,9 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Images_ImageId",
-                        column: x => x.ImageId,
-                        principalTable: "Images",
+                        name: "FK_AspNetUsers_AvagarImages_AvatarimageId",
+                        column: x => x.AvatarimageId,
+                        principalTable: "AvagarImages",
                         principalColumn: "Id");
                 });
 
@@ -192,8 +191,7 @@ namespace Infrastructure.Migrations
                     Category = table.Column<int>(type: "integer", nullable: false),
                     LocalizationX = table.Column<double>(type: "double precision", nullable: false),
                     LocalizationY = table.Column<double>(type: "double precision", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    UsersId = table.Column<Guid>(type: "uuid", nullable: false)
+                    UsersId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -202,6 +200,28 @@ namespace Infrastructure.Migrations
                         name: "FK_Place_AspNetUsers_UsersId",
                         column: x => x.UsersId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PostImages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    ContentType = table.Column<string>(type: "text", nullable: false),
+                    TotalBytes = table.Column<long>(type: "bigint", nullable: false),
+                    S3Key = table.Column<string>(type: "text", nullable: false),
+                    Url = table.Column<string>(type: "text", nullable: false),
+                    PlacesId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PostImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PostImages_Place_PlacesId",
+                        column: x => x.PlacesId,
+                        principalTable: "Place",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -238,9 +258,9 @@ namespace Infrastructure.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_ImageId",
+                name: "IX_AspNetUsers_AvatarimageId",
                 table: "AspNetUsers",
-                column: "ImageId");
+                column: "AvatarimageId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
@@ -252,6 +272,11 @@ namespace Infrastructure.Migrations
                 name: "IX_Place_UsersId",
                 table: "Place",
                 column: "UsersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PostImages_PlacesId",
+                table: "PostImages",
+                column: "PlacesId");
         }
 
         /// <inheritdoc />
@@ -273,16 +298,19 @@ namespace Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Place");
+                name: "PostImages");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Place");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Images");
+                name: "AvagarImages");
         }
     }
 }
