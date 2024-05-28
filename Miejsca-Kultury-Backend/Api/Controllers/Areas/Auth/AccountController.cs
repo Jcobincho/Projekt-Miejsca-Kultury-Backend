@@ -129,6 +129,12 @@ public class AccountController : BaseController
         return Ok(response);
     }
 
+    /// <summary>
+    /// Admin can add admin role
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [Authorize(Roles = UserRoles.Admin)]
     [HttpPut("add-admin-role")]
     [ProducesResponseType(StatusCodes.Status200OK)]
