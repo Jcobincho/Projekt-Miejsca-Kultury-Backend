@@ -44,4 +44,23 @@ public class PostsRepository : IPostsRepository
         _context.Comment.Update(comment);
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task DeleteCommentAsync(Guid userId, List<string> roles, Guid commentId, CancellationToken cancellationToken)
+    {
+        var comment = await _context.Comment.FirstOrDefaultAsync(x => x.Id == commentId, cancellationToken);
+
+        if (comment is null)
+        {
+            throw new NotAccessToDeleteCommentException();
+        }
+        else if(roles.Contains("Admin") || comment.Id == userId)
+        {
+            _context.Comment.Remove(comment);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+        else
+        {
+            throw new NotAccessToDeleteCommentException();
+        }
+    }
 }
