@@ -1,5 +1,6 @@
 using Application.Persistance.Interfaces.PostsInterfaces;
 using Domain.Entities;
+using Infrastructure.Persistance.Account.Exceptions;
 using Infrastructure.Persistance.Posts.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,7 +46,7 @@ public class PostsRepository : IPostsRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task DeleteCommentAsync(Guid userId, List<string> roles, Guid commentId, CancellationToken cancellationToken)
+    public async Task DeleteCommentAsync(Guid userId, IList<string> roles, Guid commentId, CancellationToken cancellationToken)
     {
         var comment = await _context.Comment.FirstOrDefaultAsync(x => x.Id == commentId, cancellationToken);
 
@@ -53,7 +54,7 @@ public class PostsRepository : IPostsRepository
         {
             throw new NotAccessToDeleteCommentException();
         }
-        else if(roles.Contains("Admin") || comment.Id == userId)
+        else if(roles.Contains("Admin") || comment.UsersId == userId)
         {
             _context.Comment.Remove(comment);
             await _context.SaveChangesAsync(cancellationToken);
