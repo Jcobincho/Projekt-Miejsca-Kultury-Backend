@@ -7,4 +7,5 @@ public interface IPostsRepository
     Task AddPostAsync(Places place, CancellationToken cancellationToken);
     Task IsPostExistAsync(Guid postId, CancellationToken cancellationToken);
     Task AddCommentAsync(Comments comment, CancellationToken cancellationToken);
+    Task UpdateCommentAsync(Guid userId, Guid commentId, string message, CancellationToken cancellationToken);
 }

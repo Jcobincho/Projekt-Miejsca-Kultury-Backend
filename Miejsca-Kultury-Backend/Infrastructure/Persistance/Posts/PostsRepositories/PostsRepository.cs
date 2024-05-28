@@ -32,4 +32,16 @@ public class PostsRepository : IPostsRepository
         await _context.Comment.AddAsync(comment, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task UpdateCommentAsync(Guid userId, Guid commentId, string message, CancellationToken cancellationToken)
+    {
+        var comment = await _context.Comment.FirstOrDefaultAsync(x => x.Id == commentId, cancellationToken);
+
+        if (comment is null || comment.UsersId != userId) throw new NotAccessToCommentException();
+
+        comment.Message = message;
+
+        _context.Comment.Update(comment);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 }

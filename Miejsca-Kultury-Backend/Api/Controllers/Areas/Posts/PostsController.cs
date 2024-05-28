@@ -1,6 +1,7 @@
 using Application.CQRS.Account.Static;
 using Application.CQRS.Posts.Commands.AddComment;
 using Application.CQRS.Posts.Commands.AddPosts;
+using Application.CQRS.Posts.Commands.UpdateComment;
 using Application.CQRS.Posts.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -40,6 +41,23 @@ public class PostsController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddCommentToPost([FromBody] AddCommentCommand command, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(command, cancellationToken);
+
+        return Ok(response);
+    }
+
+    /// <summary>
+    /// Update exists comment
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Authorize(Roles = UserRoles.User)]
+    [HttpPut("update-comment")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UpdateComment([FromBody] UpdateCommentCommand command, CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(command, cancellationToken);
 
