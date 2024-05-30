@@ -1,5 +1,7 @@
+using Application.CQRS.Posts.Exceptions;
 using Application.Persistance.Interfaces.PostsInterfaces;
 using Domain.Entities;
+using Domain.Enums;
 using Infrastructure.Persistance.Account.Exceptions;
 using Infrastructure.Persistance.Posts.Exceptions;
 using Microsoft.EntityFrameworkCore;
@@ -63,5 +65,22 @@ public class PostsRepository : IPostsRepository
         {
             throw new NotAccessToDeleteCommentException();
         }
+    }
+
+    public async Task UpdatePostAsync(Guid userId, Guid postId, PlacesCategory placesCategory, string title, string description,
+        double localizationX, double localizationY, CancellationToken cancellationToken)
+    {
+        var post = await _context.Place.FirstOrDefaultAsync(x => x.Id == postId, cancellationToken);
+
+        if (post is null || post.UsersId != userId) throw new HasNoAccessException();
+
+        post.Title = title;
+        post.Description = description;
+        post.Category = placesCategory;
+        post.LocalizationX = localizationX;
+        post.LocalizationY = localizationY;
+
+        _context.Place.Update(post);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }
