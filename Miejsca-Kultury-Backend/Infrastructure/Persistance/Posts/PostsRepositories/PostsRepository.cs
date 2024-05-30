@@ -2,7 +2,6 @@ using Application.CQRS.Posts.Exceptions;
 using Application.Persistance.Interfaces.PostsInterfaces;
 using Domain.Entities;
 using Domain.Enums;
-using Infrastructure.Persistance.Account.Exceptions;
 using Infrastructure.Persistance.Posts.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
@@ -81,6 +80,22 @@ public class PostsRepository : IPostsRepository
         post.LocalizationY = localizationY;
 
         _context.Place.Update(post);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task DeletePostAsync(Guid userId, Guid postId, CancellationToken cancellationToken)
+    {
+        var post = await _context.Place.FindAsync(postId, cancellationToken);
+
+        if (post is null || post.UsersId != userId) throw new HasNoAccessException();
+
+        var comments = _context.Comment.Where(x => x.PlacesId == post.Id).ToList();
+
+        foreach (var comment in comments) 
+            _context.Comment.Remove(comment);
+        
+        _context.Place.Remove(post);
+
         await _context.SaveChangesAsync(cancellationToken);
     }
 }

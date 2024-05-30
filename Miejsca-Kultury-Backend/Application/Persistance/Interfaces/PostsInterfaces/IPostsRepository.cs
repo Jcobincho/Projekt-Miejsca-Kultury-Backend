@@ -11,4 +11,5 @@ public interface IPostsRepository
     Task UpdateCommentAsync(Guid userId, Guid commentId, string message, CancellationToken cancellationToken);
     Task DeleteCommentAsync(Guid userId, IList<string> roles, Guid commentId, CancellationToken cancellationToken);
     Task UpdatePostAsync(Guid userId, Guid postId, PlacesCategory placesCategory, string title, string description, double localizationX, double localizationY, CancellationToken cancellationToken);
+    Task DeletePostAsync(Guid userId, Guid postId, CancellationToken cancellationToken);
 }
