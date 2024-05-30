@@ -1,7 +1,7 @@
-using Application.CQRS.Posts.Responses;
+using Application.CQRS.Comment.Response;
 using MediatR;
 
-namespace Application.CQRS.Posts.Commands.DeleteComment;
+namespace Application.CQRS.Comment.Commands.DeleteComment;
 
 public record DeleteCommentCommand(
     Guid CommentId

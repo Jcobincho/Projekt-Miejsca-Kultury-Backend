@@ -1,10 +1,10 @@
-using Application.CQRS.Posts.Responses;
+using Application.CQRS.Comment.Response;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Application.Persistance.Interfaces.PostsInterfaces;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.CQRS.Posts.Commands.AddComment;
+namespace Application.CQRS.Comment.Commands.AddComment;
 
 public class AddCommentHandler : IRequestHandler<AddCommentCommand, AddCommentResponse>
 {

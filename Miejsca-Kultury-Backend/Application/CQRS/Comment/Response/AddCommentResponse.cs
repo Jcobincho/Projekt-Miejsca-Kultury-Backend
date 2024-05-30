@@ -1,3 +1,3 @@
-namespace Application.CQRS.Posts.Responses;
+namespace Application.CQRS.Comment.Response;
 
 public record AddCommentResponse(string Message, Guid CommentId);

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.CQRS.Posts.Commands.UpdateComment;
+namespace Application.CQRS.Comment.Commands.UpdateComment;
 
 public class UpdateCommentValidator : AbstractValidator<UpdateCommentCommand>
 {

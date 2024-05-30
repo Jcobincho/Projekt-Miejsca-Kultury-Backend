@@ -1,9 +1,9 @@
-using Application.CQRS.Posts.Responses;
+using Application.CQRS.Comment.Response;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Application.Persistance.Interfaces.PostsInterfaces;
 using MediatR;
 
-namespace Application.CQRS.Posts.Commands.DeleteComment;
+namespace Application.CQRS.Comment.Commands.DeleteComment;
 
 public class DeleteCommentHandler : IRequestHandler<DeleteCommentCommand, DeleteCommentResponse>
 {

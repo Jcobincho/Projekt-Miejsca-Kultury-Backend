@@ -1,7 +1,7 @@
-using Application.CQRS.Posts.Responses;
+using Application.CQRS.Comment.Response;
 using MediatR;
 
-namespace Application.CQRS.Posts.Commands.AddComment;
+namespace Application.CQRS.Comment.Commands.AddComment;
 
 public record AddCommentCommand(
     Guid PlaceId,

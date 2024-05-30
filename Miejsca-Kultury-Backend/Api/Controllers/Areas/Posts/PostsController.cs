@@ -1,8 +1,5 @@
 using Application.CQRS.Account.Static;
-using Application.CQRS.Posts.Commands.AddComment;
 using Application.CQRS.Posts.Commands.AddPosts;
-using Application.CQRS.Posts.Commands.DeleteComment;
-using Application.CQRS.Posts.Commands.UpdateComment;
 using Application.CQRS.Posts.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;

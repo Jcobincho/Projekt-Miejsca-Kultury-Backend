@@ -1,7 +1,7 @@
-using Application.CQRS.Posts.Responses;
+using Application.CQRS.Comment.Response;
 using MediatR;
 
-namespace Application.CQRS.Posts.Commands.UpdateComment;
+namespace Application.CQRS.Comment.Commands.UpdateComment;
 
 public record UpdateCommentCommand(
     Guid CommentId,
