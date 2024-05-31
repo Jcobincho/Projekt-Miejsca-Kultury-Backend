@@ -1,3 +1,5 @@
+using Application.CQRS.Comment.Dtos;
+using Application.CQRS.Comment.Extension;
 using Application.CQRS.Posts.Dtos;
 using Application.CQRS.Posts.Extension;
 using Application.Persistance.Interfaces.PostsInterfaces;
@@ -106,6 +108,16 @@ public class PostsRepository : IPostsRepository
             Where(x => x.Category == placesCategory)
             .ToListAsync(cancellationToken);
 
+        if (post is null) throw new HasNoDataException();
+
         return post.Select(x => x.PostAsDto()).ToList();
+    }
+
+    public async Task<List<CommentDto>> DisplayCommentAsync(Guid postId, CancellationToken cancellationToken)
+    {
+        var comments = await _context.Comment.Where(x => x.PlacesId == postId)
+            .Include(x => x.Users).ToListAsync(cancellationToken);
+
+        return comments.Select(x => x.CommentAsDto()).ToList();
     }
 }

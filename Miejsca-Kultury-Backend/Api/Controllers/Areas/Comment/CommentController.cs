@@ -2,6 +2,8 @@ using Application.CQRS.Account.Static;
 using Application.CQRS.Comment.Commands.AddComment;
 using Application.CQRS.Comment.Commands.DeleteComment;
 using Application.CQRS.Comment.Commands.UpdateComment;
+using Application.CQRS.Comment.Dtos;
+using Application.CQRS.Comment.Queries.DisplayComments;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,4 +63,19 @@ public class CommentController : BaseController
         return Ok(response);
     }
 
+    /// <summary>
+    /// Display comments
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Authorize(Roles = UserRoles.User)]
+    [HttpGet("{PostId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<CommentDto>>> DisplayComments([FromRoute] DisplayCommentsQuery query, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(query, cancellationToken);
+
+        return Ok(response);
+    }
 }

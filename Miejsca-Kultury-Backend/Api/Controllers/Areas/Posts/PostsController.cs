@@ -51,7 +51,7 @@ public class PostsController : BaseController
     
     /// <summary>
     /// Delete posts
-    /// TODO Jak będzie dodawanie lików i ocen, to trzeba dodać też usuwanei wszystkich ocen i lików
+    /// TODO Jak będzie dodawanie lików i ocen, to trzeba dodać też usuwanie wszystkich ocen i lików
     /// </summary>
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
@@ -66,8 +66,10 @@ public class PostsController : BaseController
 
         return Ok(response);
     }
+    
     /// <summary>
     /// Display posts
+    /// TODO Jak będzie dodawanie lików i ocen, to trzeba dodać wyświetlanie lików i ocen
     /// </summary>
     /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
@@ -75,6 +77,7 @@ public class PostsController : BaseController
     [Authorize(Roles = UserRoles.User)]
     [HttpGet("{Category}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<List<DisplayPostsDto>>> DisplayPosts([FromRoute] DisplayPostsQuery query, CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(query, cancellationToken);
