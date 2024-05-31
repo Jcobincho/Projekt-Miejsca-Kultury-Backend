@@ -1,4 +1,5 @@
-using Application.CQRS.Posts.Exceptions;
+using Application.CQRS.Posts.Dtos;
+using Application.CQRS.Posts.Extension;
 using Application.Persistance.Interfaces.PostsInterfaces;
 using Domain.Entities;
 using Domain.Enums;
@@ -97,5 +98,14 @@ public class PostsRepository : IPostsRepository
         _context.Place.Remove(post);
 
         await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<List<DisplayPostsDto>> DisplayPostsAsync(PlacesCategory placesCategory, CancellationToken cancellationToken)
+    {
+        var post = await _context.Place.Include(x => x.images).
+            Where(x => x.Category == placesCategory)
+            .ToListAsync(cancellationToken);
+
+        return post.Select(x => x.PostAsDto()).ToList();
     }
 }

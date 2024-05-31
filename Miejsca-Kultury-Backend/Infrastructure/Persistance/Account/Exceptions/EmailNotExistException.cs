@@ -1,6 +1,6 @@
 using Domain.Exceptions;
 
-namespace Application.CQRS.Account.Exceptions;
+namespace Infrastructure.Persistance.Account.Exceptions;
 
 public class EmailNotExistException : BaseException
 {

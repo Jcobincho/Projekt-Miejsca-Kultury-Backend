@@ -1,6 +1,6 @@
 using Domain.Exceptions;
 
-namespace Application.CQRS.Posts.Exceptions;
+namespace Infrastructure.Persistance.Posts.Exceptions;
 
 public class HasNoAccessException : BaseException
 {

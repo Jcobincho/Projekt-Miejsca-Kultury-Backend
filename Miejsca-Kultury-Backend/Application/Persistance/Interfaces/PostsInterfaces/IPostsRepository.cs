@@ -1,3 +1,4 @@
+using Application.CQRS.Posts.Dtos;
 using Domain.Entities;
 using Domain.Enums;
 
@@ -12,4 +13,5 @@ public interface IPostsRepository
     Task DeleteCommentAsync(Guid userId, IList<string> roles, Guid commentId, CancellationToken cancellationToken);
     Task UpdatePostAsync(Guid userId, Guid postId, PlacesCategory placesCategory, string title, string description, double localizationX, double localizationY, CancellationToken cancellationToken);
     Task DeletePostAsync(Guid userId, Guid postId, CancellationToken cancellationToken);
+    Task<List<DisplayPostsDto>> DisplayPostsAsync(PlacesCategory placesCategory, CancellationToken cancellationToken);
 }

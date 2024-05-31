@@ -2,6 +2,8 @@ using Application.CQRS.Account.Static;
 using Application.CQRS.Posts.Commands.AddPosts;
 using Application.CQRS.Posts.Commands.DeletePosts;
 using Application.CQRS.Posts.Commands.UpdatePosts;
+using Application.CQRS.Posts.Dtos;
+using Application.CQRS.Posts.Queries.DisplayPosts;
 using Application.CQRS.Posts.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -61,6 +63,21 @@ public class PostsController : BaseController
     public async Task<IActionResult> DeletePosts([FromBody] DeletePostsCommand command, CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(command, cancellationToken);
+
+        return Ok(response);
+    }
+    /// <summary>
+    /// Display posts
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [Authorize(Roles = UserRoles.User)]
+    [HttpGet("{Category}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<DisplayPostsDto>>> DisplayPosts([FromRoute] DisplayPostsQuery query, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(query, cancellationToken);
 
         return Ok(response);
     }

@@ -2,7 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Application.CQRS.Account.DTO;
-using Application.CQRS.Account.Exceptions;
 using Application.CQRS.Account.Static;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Domain.Authentication;
