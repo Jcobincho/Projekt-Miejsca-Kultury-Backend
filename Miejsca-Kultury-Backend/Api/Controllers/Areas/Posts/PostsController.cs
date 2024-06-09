@@ -57,7 +57,7 @@ public class PostsController : BaseController
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [Authorize(Roles = UserRoles.Admin)]
-    [HttpPut("update-posts")]
+    [HttpDelete("delete-posts")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> DeletePosts([FromBody] DeletePostsCommand command, CancellationToken cancellationToken)
