@@ -12,6 +12,8 @@ public class Users : IdentityUser<Guid>
     public Guid? AvatarimageId { get; set; }
     public Avatarimage Avatarimage { get; set; }
     
+    public List<Comments> comments { get; set; }
+    
 }
 
 public class UserConfiguration : IEntityTypeConfiguration<Users>

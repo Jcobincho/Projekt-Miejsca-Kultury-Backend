@@ -1,4 +1,4 @@
-using Application.CQRS.Posts.Commands.Responses;
+using Application.CQRS.Posts.Responses;
 using Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Http;

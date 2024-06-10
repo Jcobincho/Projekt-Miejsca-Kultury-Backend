@@ -25,4 +25,8 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="9.0.0-preview.3.24172.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CQRS\Comment\Commands\" />
+  </ItemGroup>
+
 </Project>

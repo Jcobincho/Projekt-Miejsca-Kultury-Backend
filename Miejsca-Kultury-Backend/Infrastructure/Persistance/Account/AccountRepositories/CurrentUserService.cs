@@ -14,6 +14,11 @@ public class CurrentUserService : ICurrentUserService
     }
     
     public Guid UserId => GetClaimAsGuid(ClaimTypes.NameIdentifier, _httpContextAccessor);
+    public IList<string> UserRoles() => _httpContextAccessor.HttpContext.User.Claims
+        .Where(x => x.Type == ClaimTypes.Role)
+        .Select(x => x.Value)
+        .ToList();
+    
 
     private static Guid GetClaimAsGuid(string claimIdentifier, IHttpContextAccessor contextAccessor)
     {

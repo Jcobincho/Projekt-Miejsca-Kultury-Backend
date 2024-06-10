@@ -16,4 +16,6 @@ public class Places
     
     public Guid? UsersId { get; set; }
     public Users Users { get; set; }
+    
+    public List<Postimage> images { get; set; }
 }

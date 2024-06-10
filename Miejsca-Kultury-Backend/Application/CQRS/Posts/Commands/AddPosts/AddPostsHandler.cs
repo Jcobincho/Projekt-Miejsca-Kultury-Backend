@@ -1,5 +1,5 @@
 using Application.CQRS.Image.Commands.UploadPostImages;
-using Application.CQRS.Posts.Commands.Responses;
+using Application.CQRS.Posts.Responses;
 using Application.Persistance.Interfaces.AccountInterfaces;
 using Application.Persistance.Interfaces.PostsInterfaces;
 using Domain.Entities;

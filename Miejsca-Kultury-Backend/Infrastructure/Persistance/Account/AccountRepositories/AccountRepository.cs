@@ -66,7 +66,7 @@ public class AccountRepository : IAccountRepository
 
     public JsonWebToken GenerateJwtToken(Guid userId, string email, ICollection<string> roles, ICollection<Claim> claims)
     {
-        var now = DateTime.UtcNow;
+        var now = System.DateTime.UtcNow;
         
         var jwtClaims = new List<Claim>()
         {
@@ -186,5 +186,14 @@ public class AccountRepository : IAccountRepository
     {
         _context.AvagarImages.Remove(avatarImage);
         await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task AddAdminRoleAsync(string email, CancellationToken cancellationToken)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken)
+                   ?? throw new EmailNotExistException();
+
+        var addUserRole = await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+        if (!addUserRole.Succeeded) throw new AddToRoleException();
     }
 }
