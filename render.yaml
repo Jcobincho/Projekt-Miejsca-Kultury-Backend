@@ -1,7 +1,7 @@
 # Dodajemy definicję usługi dla Minio do render.yaml
 services:
   # Usługa dla backend API
-  - type: web-service
+  - type: web
     name: backend-api
     env: production
     buildCommand: |

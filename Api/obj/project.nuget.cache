@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1J3pvHd5rv/yCkgG/E7l4H8jystqpaH+l1X8wsTBX4GxU1vAKu5yIQZIhwVn+4WYeJtiST2EWl8i4ZoC+VQuag==",
+  "dgSpecHash": "yHMbIwl+p/C3PTaDI8tMvF6f3SdJ/6WXM6eGLPOXt/wMWU2aLdJotOldae935C4V8r4Y2b2KGUEdYW7YnB9ziw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\Api.csproj",
+  "projectFilePath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jakub\\.nuget\\packages\\awssdk.core\\3.7.304\\awssdk.core.3.7.304.nupkg.sha512",
     "C:\\Users\\jakub\\.nuget\\packages\\awssdk.s3\\3.7.307.32\\awssdk.s3.3.7.307.32.nupkg.sha512",

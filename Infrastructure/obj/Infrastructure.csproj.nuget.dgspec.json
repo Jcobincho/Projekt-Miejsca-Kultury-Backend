@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj": {}
+    "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj": {
+    "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj",
+        "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\jakub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\obj\\",
+        "outputPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj"
+              "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj"
               }
             }
           }
@@ -121,14 +121,14 @@
         }
       }
     },
-    "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
+    "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\jakub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -204,14 +204,14 @@
         }
       }
     },
-    "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\jakub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -232,11 +232,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Application\\Application.csproj"
+              "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj"
               },
-              "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj"
+              "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj"
               }
             }
           }

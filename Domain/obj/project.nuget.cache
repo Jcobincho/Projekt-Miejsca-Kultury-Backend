@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XnY8cTYlgDsp+UQZCZAfmUV1fccwY7v473isUOVu7a5UXIMoiMrw/w1Ldnh5qeSUiUjUK4o21aJzlIMkCHrfSA==",
+  "dgSpecHash": "WbbjQ4UMqYOi/34I1MiEfedmRj76Z20AYv3T+NjQO8PnWIMnapZIgsMKrUNgimNeSIaPmGjDnNWZTdAslfrkMA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jakub\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\9.0.0-preview.3.24172.13\\microsoft.aspnetcore.cryptography.internal.9.0.0-preview.3.24172.13.nupkg.sha512",
     "C:\\Users\\jakub\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\9.0.0-preview.3.24172.13\\microsoft.aspnetcore.cryptography.keyderivation.9.0.0-preview.3.24172.13.nupkg.sha512",
