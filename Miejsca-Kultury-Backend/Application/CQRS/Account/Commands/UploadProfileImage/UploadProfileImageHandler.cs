@@ -37,6 +37,6 @@ public sealed class UploadProfileImageHandler : IRequestHandler<UploadProfileIma
         user.AvatarimageId = fileResult.Id;
         await _accountRepository.UpdateUserImageAsync(user, cancellationToken);
 
-        return new AccountResponse("Pomyślnie zmioniono zdjęcie profilowe!");
+        return new AccountResponse(fileResult.AvatarImage.Url);
     }
 }
