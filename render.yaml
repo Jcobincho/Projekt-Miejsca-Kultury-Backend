@@ -24,7 +24,7 @@ services:
       memory: 1024
 
   # Usługa dla Minio
-  - type: storage-service
+  - type: web
     name: minio-storage
     env: production
     buildCommand: |
