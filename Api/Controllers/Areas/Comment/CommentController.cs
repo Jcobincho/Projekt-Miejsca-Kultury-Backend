@@ -69,7 +69,6 @@ public class CommentController : BaseController
     /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [Authorize(Roles = UserRoles.User)]
     [HttpGet("{PostId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<CommentDto>>> DisplayComments([FromRoute] DisplayCommentsQuery query, CancellationToken cancellationToken)
