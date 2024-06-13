@@ -16,4 +16,5 @@ public interface IPostsRepository
     Task DeletePostAsync(Guid userId, Guid postId, CancellationToken cancellationToken);
     Task<List<DisplayPostsDto>> DisplayPostsAsync(PlacesCategory placesCategory, CancellationToken cancellationToken);
     Task<List<CommentDto>> DisplayCommentAsync(Guid postId, CancellationToken cancellationToken);
+    Task<int> LikeSystemAsync(Guid postId, Guid userId, CancellationToken cancellationToken);
 }
