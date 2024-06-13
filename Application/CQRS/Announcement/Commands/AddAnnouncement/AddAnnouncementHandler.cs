@@ -24,7 +24,7 @@ public class AddAnnouncementHandler : IRequestHandler<AddAnnouncementCommand, Ad
         {
             Localization = request.Localization,
             DataDescription = request.DataDescription,
-            Description = request.DataDescription,
+            Description = request.Description,
             Date = request.Date,
             UsersId = userId
         };
