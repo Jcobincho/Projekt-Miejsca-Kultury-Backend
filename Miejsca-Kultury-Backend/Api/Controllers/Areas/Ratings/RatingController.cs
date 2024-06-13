@@ -1,6 +1,8 @@
 using Application.CQRS.Account.Static;
 using Application.CQRS.Ratings.Comands.AddRating;
 using Application.CQRS.Ratings.Comands.UpdateRating;
+using Application.CQRS.Ratings.Dtos;
+using Application.CQRS.Ratings.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +25,15 @@ public class RatingController:BaseController
     public async Task<IActionResult> UpdateRating([FromBody] UpdateRatingCommand command, CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(command, cancellationToken);
+        return Ok(response);
+    }
+
+    [Authorize(Roles = UserRoles.User)]
+    [HttpGet("{PostId}")]
+    public async Task<ActionResult<RatingDto>> DisplayRating([FromRoute] DisplayRatingQuery query,
+        CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(query, cancellationToken);
         return Ok(response);
     }
 }

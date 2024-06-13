@@ -1,5 +1,6 @@
 using Application.CQRS.Comment.Dtos;
 using Application.CQRS.Posts.Dtos;
+using Application.CQRS.Ratings.Dtos;
 using Domain.Entities;
 using Domain.Enums;
 
@@ -20,5 +21,6 @@ public interface IPostsRepository
     Task UpdateRatingAsync(Guid userId, Guid placeId,TypesOfRatings newRating,
         CancellationToken cancellationToken);
     Task<List<DisplayPostsDto>> DisplayPostsAsync(PlacesCategory placesCategory, CancellationToken cancellationToken);
+    Task<RatingDto> DisplayRatingAsync(Guid placeId, Guid userId, CancellationToken cancellationToken);
     Task<List<CommentDto>> DisplayCommentAsync(Guid postId, CancellationToken cancellationToken);
 }

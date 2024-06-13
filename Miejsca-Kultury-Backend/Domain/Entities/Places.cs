@@ -17,5 +17,5 @@ public class Places
     public Users Users { get; set; }
     
     public List<Postimage> images { get; set; }
-    public List<Ratings> Ratings { get; set; }
+    public List<Ratings> ratings { get; set; }
 }
