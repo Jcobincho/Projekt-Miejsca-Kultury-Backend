@@ -3,6 +3,7 @@ using Application.CQRS.Announcement.Commands.AddAnnouncement;
 using Application.CQRS.Announcement.Commands.DeleteAnnouncement;
 using Application.CQRS.Announcement.Dtos;
 using Application.CQRS.Announcement.Enum;
+using Application.CQRS.Announcement.Queries.GetAnnouncements;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,7 +55,7 @@ public class AnnouncementController : BaseController
     /// <returns></returns>
     [HttpGet("{State}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<List<GetAnnouncementDto>>> DisplayAnnouncements([FromRoute] State query,
+    public async Task<ActionResult<List<GetAnnouncementDto>>> DisplayAnnouncements([FromRoute] GetAnnouncementsQuery query,
         CancellationToken cancellationToken)
     {
         var response = await Mediator.Send(query, cancellationToken);
