@@ -9,7 +9,7 @@ public class Places
     public string Description { get; set; }
     //Tu ma być prop do oceny
     //Tu ma być prop do komentarzy
-    public List<Guid> LikedBy { get; set; } = new List<Guid>();
+    //Tu ma być prop do lików
     public PlacesCategory Category { get; set; }
     public double LocalizationX { get; set; }
     public double LocalizationY { get; set; }

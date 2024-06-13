@@ -8,5 +8,4 @@ public class DisplayPostsDto
     public double LocalizationX { get; set; }
     public double LocalizationY { get; set; }
     public List<string> Images { get; set; }
-    public int LikesCount { get; set; }
 }

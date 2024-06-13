@@ -1,7 +1,6 @@
 using Application.CQRS.Account.Static;
 using Application.CQRS.Posts.Commands.AddPosts;
 using Application.CQRS.Posts.Commands.DeletePosts;
-using Application.CQRS.Posts.Commands.LikePosts;
 using Application.CQRS.Posts.Commands.UpdatePosts;
 using Application.CQRS.Posts.Dtos;
 using Application.CQRS.Posts.Queries.DisplayPosts;
@@ -82,24 +81,6 @@ public class PostsController : BaseController
     {
         var response = await Mediator.Send(query, cancellationToken);
 
-        return Ok(response);
-    }
-    
-       
-    /// <summary>
-    /// Like a post
-    /// </summary>
-    /// <param name="postId"></param>
-    /// <param name="userId"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [Authorize(Roles = UserRoles.User)]
-    [HttpPost("like-post")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> LikePost([FromBody] LikePostCommand command, CancellationToken cancellationToken)
-    {
-        var response = await Mediator.Send(command, cancellationToken);
         return Ok(response);
     }
 }
