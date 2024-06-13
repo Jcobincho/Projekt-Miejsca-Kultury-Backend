@@ -38,17 +38,25 @@ public class AnnouncementRepository : IAnnouncementRepository
         if (state == State.Old)
         {
             announcements =
-                await _context.Announcements.Where(x => x.Date < DateOnly.FromDateTime(DateTime.UtcNow)).ToListAsync(cancellationToken);
+                await _context.Announcements
+                    .Where(x => x.Date < DateOnly.FromDateTime(DateTime.UtcNow))
+                    .OrderByDescending(x => x.Date)
+                    .ToListAsync(cancellationToken);
         }
         else if (state == State.NowaDay)
         {
             announcements =
-                await _context.Announcements.Where(x => x.Date == DateOnly.FromDateTime(DateTime.UtcNow)).ToListAsync(cancellationToken);
+                await _context.Announcements
+                    .Where(x => x.Date == DateOnly.FromDateTime(DateTime.UtcNow))
+                    .ToListAsync(cancellationToken);
         }
         else if (state == State.Future)
         {
             announcements =
-                await _context.Announcements.Where(x => x.Date > DateOnly.FromDateTime(DateTime.UtcNow)).ToListAsync(cancellationToken);
+                await _context.Announcements
+                    .Where(x => x.Date > DateOnly.FromDateTime(DateTime.UtcNow))
+                    .OrderBy(x => x.Date)
+                    .ToListAsync(cancellationToken);
         }
         else
         {
