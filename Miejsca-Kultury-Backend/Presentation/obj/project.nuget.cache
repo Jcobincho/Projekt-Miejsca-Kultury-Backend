@@ -1,13 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "3WPwnQuW/vIDDMroKh4aO4nmAXrJ6B42ldRW7ltsFCMXM/k6B/L2kgwYXe+KMEHBG18j1sY8/dFQgNruLm2D4g==",
+  "dgSpecHash": "/qCYhpVzYTXB2hMwPFoVxOamexDGJzhpBVRCSzGhVJ7iJAbKch4nqqq1W0ab3n0lhhWXYpC5Z+NE34Lj51kG3Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jakub\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
+  "projectFilePath": "C:\\Users\\sebcw\\Documents\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\jakub\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
+    "C:\\Users\\sebcw\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }

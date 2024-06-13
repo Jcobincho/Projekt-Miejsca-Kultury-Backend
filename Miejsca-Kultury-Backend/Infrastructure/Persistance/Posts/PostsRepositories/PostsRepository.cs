@@ -69,6 +69,43 @@ public class PostsRepository : IPostsRepository
         }
     }
 
+    public async Task AddRatingAsync(Ratings ratings, CancellationToken cancellationToken)
+    {
+        await _context.Rating.AddAsync(ratings, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task IsRatingExistAsync(Guid postId, Guid userId, CancellationToken cancellationToken)
+    {
+        var rating = await _context.Rating.FirstOrDefaultAsync(x => x.PlacesId == postId && x.UsersId == userId, cancellationToken);
+        if (rating is not null) throw new RatingAlreadyExistsException();
+    }
+
+    public async Task UpdateRatingAsync(Guid userId, Guid placeId, TypesOfRatings newRating,
+        CancellationToken cancellationToken)
+    {
+        var rating =
+            await _context.Rating.FirstOrDefaultAsync(
+                x => x.PlacesId == placeId && x.UsersId == userId, cancellationToken);
+        if (rating is null)
+        {
+            throw new NoRattingToUpdateException();
+        }
+        rating.Rating = newRating;
+        _context.Rating.Update(rating);
+        await _context.SaveChangesAsync(cancellationToken);
+        
+    }
+
+    public async Task UpdateAverageRatingsAsync(Guid placeId, CancellationToken cancellationToken)
+    {
+        var aver = await _context.Rating.Where(x => x.PlacesId == placeId).AverageAsync(x=>(int)x.Rating,cancellationToken);
+        var place = await _context.Place.FirstOrDefaultAsync(x => x.Id == placeId,cancellationToken);
+        _context.Place.Update(place);
+        await _context.SaveChangesAsync(cancellationToken);
+        
+     
+    }
     public async Task UpdatePostAsync(Guid userId, Guid postId, PlacesCategory placesCategory, string title, string description,
         double localizationX, double localizationY, CancellationToken cancellationToken)
     {

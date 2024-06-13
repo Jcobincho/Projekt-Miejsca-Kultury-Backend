@@ -148,6 +148,30 @@ namespace Infrastructure.Migrations
                     b.ToTable("PostImages");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Ratings", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("PlacesId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlacesId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("Rating");
+                });
+
             modelBuilder.Entity("Domain.Entities.Users", b =>
                 {
                     b.Property<Guid>("Id")
@@ -365,7 +389,7 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Users", "Users")
-                        .WithMany()
+                        .WithMany("comments")
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -387,12 +411,31 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Postimage", b =>
                 {
                     b.HasOne("Domain.Entities.Places", "Places")
-                        .WithMany()
+                        .WithMany("images")
                         .HasForeignKey("PlacesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Places");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Ratings", b =>
+                {
+                    b.HasOne("Domain.Entities.Places", "Places")
+                        .WithMany("Ratings")
+                        .HasForeignKey("PlacesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Places");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Domain.Entities.Users", b =>
@@ -453,6 +496,18 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Places", b =>
+                {
+                    b.Navigation("Ratings");
+
+                    b.Navigation("images");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Users", b =>
+                {
+                    b.Navigation("comments");
                 });
 #pragma warning restore 612, 618
         }

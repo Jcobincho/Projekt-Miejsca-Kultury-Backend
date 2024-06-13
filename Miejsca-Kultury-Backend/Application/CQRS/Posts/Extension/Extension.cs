@@ -13,7 +13,7 @@ public static class Extension
         {
             ulrList.Add(image.Url);
         }
-        
+        double averageRating = post.Ratings.Any() ? post.Ratings.Average(r => (int)r.Rating) : 0;
         return new DisplayPostsDto
         {
             Id = post.Id,
@@ -21,6 +21,7 @@ public static class Extension
             Description = post.Description,
             LocalizationX = post.LocalizationX,
             LocalizationY = post.LocalizationY,
+            AverageRating = averageRating,
             Images = ulrList
         };
     }
