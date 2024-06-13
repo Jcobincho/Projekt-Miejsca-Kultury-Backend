@@ -65,11 +65,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
+      "projectUniqueName": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
       "projectName": "Presentation",
-      "projectPath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
+      "projectPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
       "packagesPath": "C:\\Users\\barto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Presentation\\obj\\",
+      "outputPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Presentation\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\barto\\AppData\\Roaming\\NuGet\\NuGet.Config"

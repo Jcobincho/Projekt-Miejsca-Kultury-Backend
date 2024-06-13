@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {}
+    "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
+    "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\barto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\barto\\AppData\\Roaming\\NuGet\\NuGet.Config"

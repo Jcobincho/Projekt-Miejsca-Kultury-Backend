@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "To2OQcoHQuNN7qesePwGxebKRGNb9+MB+yOF7mK6az/Jtp4FA4jmA3TOnmnFMlm2qjBnLU6Vx6YcGY7869RoNg==",
+  "dgSpecHash": "qA2bir1EYK9y+TVpZ98X/olkP9PTr3Tv7YWwjK2HAy6+X7u/WeghMqCwp9GI4YSledggsmhrA3fYH0mz3Q8zRw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Api\\Api.csproj",
+  "projectFilePath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\barto\\.nuget\\packages\\awssdk.core\\3.7.304\\awssdk.core.3.7.304.nupkg.sha512",
     "C:\\Users\\barto\\.nuget\\packages\\awssdk.s3\\3.7.307.32\\awssdk.s3.3.7.307.32.nupkg.sha512",

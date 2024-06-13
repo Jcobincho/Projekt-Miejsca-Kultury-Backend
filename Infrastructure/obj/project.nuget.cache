@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NPPqhfLuJQUs4yEfhkipRnYjo8t9JnqAcI5UxPQvC+JRgT0IdxBG1AkD+P53hJsMGrY/He78zODEbWeurBmJJw==",
+  "dgSpecHash": "hNc16PICd6vkPj3TYi70GCQzXqRx/i5apuDIU48WHxoiB9RnMoaPdPrYSBvIi5BAApt3y2mJaa9HzPcYz9xcSw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\barto\\.nuget\\packages\\awssdk.core\\3.7.304\\awssdk.core.3.7.304.nupkg.sha512",
     "C:\\Users\\barto\\.nuget\\packages\\awssdk.s3\\3.7.307.32\\awssdk.s3.3.7.307.32.nupkg.sha512",

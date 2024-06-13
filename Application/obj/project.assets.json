@@ -2599,11 +2599,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj",
+      "projectPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\barto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\obj\\",
+      "outputPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\barto\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2618,8 +2618,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj"
+            "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Domain\\Domain.csproj"
             }
           }
         }

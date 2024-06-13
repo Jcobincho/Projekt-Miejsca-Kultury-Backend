@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LIdyqxMRpmWrfeJDr8FqSfsjChjx/jplMCX9YVMrEI+Nz55b8VAjWqz4pCtkMKAMrWoOC4DIyrU2o1TQGi1gUg==",
+  "dgSpecHash": "1M0HeOhe5ql/2vEDPcfg+uTdVfqzj1V8QFRoOuU5SgCJFVEXZJ2GfPzA6svJaLPu9HMYV8A6v0w0pzK9Qhyl+Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
+  "projectFilePath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\barto\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
   ],

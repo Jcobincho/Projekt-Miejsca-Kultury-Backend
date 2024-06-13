@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ULo3iyRIItbKKsGUnvqNc2uv2lSfGBHMYVL9y9rCwrUkVFQ9I+nSQZ3aJlpAfs1YRgfwUnQ86jxNbz44trxzXg==",
+  "dgSpecHash": "pCTHRzDUL7jbWAQq4rXQIIHKaDvEiIrfBPYBeew3D98nZ2XadPMDTQTvE339e8EfNCJXs/fM09H70tNc/H7H5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\barto\\Desktop\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\barto\\.nuget\\packages\\fluentvalidation\\11.9.1\\fluentvalidation.11.9.1.nupkg.sha512",
     "C:\\Users\\barto\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
