@@ -74,7 +74,7 @@ public class PostsController : BaseController
     /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [Authorize(Roles = UserRoles.User)]
+  
     [HttpGet("{Category}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
