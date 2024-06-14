@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fHb3gqdxjDM0IVaAar49VLrmZP+nD+bIjQXYISHWz2M13l1TpYKHriDDdqWTS+qI4T+AbnnJP+rOFlJ2r/r1xQ==",
+  "dgSpecHash": "+79HRgQlwWGa/AfSEhm9MBy6fYpfSrt04lnRz2rWI5Ii3RYm6O8/mSJ/y1MYUR+JzLfyEq6iRKIiBInq8w3kCg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sebcw\\Documents\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\Api.csproj",
+  "projectFilePath": "C:\\Users\\sebcw\\Documents\\GitHub\\Projekt-Miejsca-Kultury-Backend-Nowy\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sebcw\\.nuget\\packages\\awssdk.core\\3.7.304\\awssdk.core.3.7.304.nupkg.sha512",
     "C:\\Users\\sebcw\\.nuget\\packages\\awssdk.s3\\3.7.307.32\\awssdk.s3.3.7.307.32.nupkg.sha512",

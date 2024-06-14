@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rfMHV5mqonIGDHyri4pjXpEh1gCT7B4i2F5drWL0SGuA3bu8NFPy6eG9ZE4bALX7r6kHEBp4fJq7ce+cyUbI/w==",
+  "dgSpecHash": "+ExzKjNbEa7kgqJtLD3kQY95wKA5b0fJDLLj7DjUCxoQZzlaPOk1Hv06wLWUwWrV/EtKYorAUly3u1Aov8hzpw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sebcw\\Documents\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
+  "projectFilePath": "C:\\Users\\sebcw\\Documents\\GitHub\\Projekt-Miejsca-Kultury-Backend-Nowy\\Projekt-Miejsca-Kultury-Backend\\Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sebcw\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
   ],
