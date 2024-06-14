@@ -112,8 +112,13 @@ public class PostsRepository : IPostsRepository
     public async Task<RatingDto> DisplayRatingAsync(Guid placeId,Guid userId, CancellationToken cancellationToken)
     {
         var rating = await _context.Rating.FirstOrDefaultAsync(x => x.PlacesId == placeId && x.UsersId == userId,cancellationToken);
-        if (rating is null) throw new NoRatingToDisplayException();
-        return rating.RatingAsDto();
+        if (rating is null)
+        {
+            throw new NoRatingToDisplayException();}
+        else
+        {
+            return rating.RatingAsDto();
+        }
     }
     public async Task UpdatePostAsync(Guid userId, Guid postId, PlacesCategory placesCategory, string title, string description,
         double localizationX, double localizationY, CancellationToken cancellationToken)
