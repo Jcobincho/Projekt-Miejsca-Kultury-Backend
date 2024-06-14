@@ -29,7 +29,8 @@ public class RatingController:BaseController
     }
 
     [Authorize(Roles = UserRoles.User)]
-    [HttpGet("{PostId}")]
+    [HttpGet("{PlaceId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<RatingDto>> DisplayRating([FromRoute] DisplayRatingQuery query,
         CancellationToken cancellationToken)
     {

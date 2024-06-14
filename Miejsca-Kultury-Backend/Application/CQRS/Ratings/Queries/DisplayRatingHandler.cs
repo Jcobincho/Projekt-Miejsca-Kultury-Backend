@@ -17,6 +17,7 @@ public class DisplayRatingHandler:IRequestHandler<DisplayRatingQuery,RatingDto>
     }
     public Task<RatingDto> Handle(DisplayRatingQuery request, CancellationToken cancellationToken)
     {
+        _postsRepository.IsPostExistAsync(request.PlaceId, cancellationToken);
         var userId = _currentUserService.UserId;
         return _postsRepository.DisplayRatingAsync(request.PlaceId, userId, cancellationToken);
     }
