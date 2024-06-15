@@ -6,5 +6,5 @@ namespace Application.CQRS.Ratings.Comands.UpdateRating;
 
 public record UpdateRatingCommand( 
     Guid PlaceId,
-    TypesOfRatings Rating
+    TypesOfRatings NewRating
 ):IRequest<UpdateRatingResponse>;

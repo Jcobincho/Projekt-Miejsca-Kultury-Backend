@@ -20,7 +20,7 @@ public class UpdateRatingHandler:IRequestHandler<UpdateRatingCommand,UpdateRatin
     {
         await _postsRepository.IsPostExistAsync(request.PlaceId, cancellationToken);
         var userId = _currentUser.UserId;
-        await _postsRepository.UpdateRatingAsync(userId, request.PlaceId, request.Rating,
+        await _postsRepository.UpdateRatingAsync(userId, request.PlaceId, request.NewRating,
             cancellationToken);
         return new UpdateRatingResponse("Ocena zaktualizowana!");
     }

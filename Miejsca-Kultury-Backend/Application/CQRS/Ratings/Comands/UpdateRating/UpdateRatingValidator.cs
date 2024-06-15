@@ -6,6 +6,6 @@ public class UpdateRatingValidator: AbstractValidator<UpdateRatingCommand>
 {
     public UpdateRatingValidator()
     {
-        RuleFor(x => x.Rating).IsInEnum().WithMessage("Wybierz ocenę miejsca");
+        RuleFor(x => x.NewRating).IsInEnum().WithMessage("Wybierz ocenę miejsca");
     }
 }
