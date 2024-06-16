@@ -15,6 +15,8 @@ public class MiejscaKulturyDbContext : IdentityDbContext<Users, IdentityRole<Gui
     public DbSet<Comments> Comment { get; set; }
     public DbSet<Domain.Entities.Announcement> Announcements { get; set; }
     
+    public DbSet<Ratings> Rating { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
