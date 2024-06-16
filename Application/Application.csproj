@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="CQRS\Comment\Commands\" />
+    <Folder Include="CQRS\Ratings\" />
   </ItemGroup>
 
 </Project>
