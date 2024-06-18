@@ -22,7 +22,7 @@ public class EmailSenderService : IEmailSenderService
 
         using var client = new SmtpClient();
         {
-            await client.ConnectAsync(_smtpConfig.SmtpHost, _smtpConfig.SmtpPort, false);
+            await client.ConnectAsync(_smtpConfig.SmtpHost, _smtpConfig.SmtpPort, true);
             await client.AuthenticateAsync(_smtpConfig.SmtpUser, _smtpConfig.SmtpPassword);
             var status = await client.SendAsync(emailMessage);
             await client.DisconnectAsync(true);
