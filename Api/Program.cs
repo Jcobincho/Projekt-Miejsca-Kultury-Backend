@@ -1,6 +1,7 @@
 using Api.ExceptionFilter;
 using Api.Extensions;
 using Application;
+using DotNetEnv;
 using Infrastructure;
 using Presentation;
 
