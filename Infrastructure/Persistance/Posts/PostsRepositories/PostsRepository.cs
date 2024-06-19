@@ -145,8 +145,14 @@ public class PostsRepository : IPostsRepository
 
         var comments = _context.Comment.Where(x => x.PlacesId == post.Id).ToList();
 
+        var rating = _context.Rating.Where(x => x.PlacesId == post.Id).ToList();
+
         foreach (var comment in comments) 
             _context.Comment.Remove(comment);
+
+        foreach (var ratings in rating)
+            _context.Rating.Remove(ratings);
+        
         
         _context.Place.Remove(post);
 
