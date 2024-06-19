@@ -24,7 +24,8 @@ public static class Extension
             LocalizationX = post.LocalizationX,
             LocalizationY = post.LocalizationY,
             AverageRating = averageRating,
-            Images = ulrList
+            Images = ulrList,
+            LikesCount = post.LikedBy?.Count ?? 0
         };
     }
 }

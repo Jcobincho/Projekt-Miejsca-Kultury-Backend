@@ -60,19 +60,19 @@
     ]
   },
   "packageFolders": {
-    "/home/jcob/.nuget/packages/": {}
+    "C:\\Users\\barto\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jcob/Pulpit/Projekt-Miejsca-Kultury-Backend/Presentation/Presentation.csproj",
+      "projectUniqueName": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
       "projectName": "Presentation",
-      "projectPath": "/home/jcob/Pulpit/Projekt-Miejsca-Kultury-Backend/Presentation/Presentation.csproj",
-      "packagesPath": "/home/jcob/.nuget/packages/",
-      "outputPath": "/home/jcob/Pulpit/Projekt-Miejsca-Kultury-Backend/Presentation/obj/",
+      "projectPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Presentation\\Presentation.csproj",
+      "packagesPath": "C:\\Users\\barto\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\barto\\Desktop\\GitHub\\Projekt-Miejsca-Kultury-Backend\\Presentation\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/jcob/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\barto\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -90,6 +90,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -112,22 +117,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[7.0.19, 7.0.19]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[7.0.19, 7.0.19]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/jcob/.dotnet/sdk/8.0.300/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
