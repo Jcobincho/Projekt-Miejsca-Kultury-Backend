@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AKplhIO5leRjYyk/gOhS3r5QGYIqvAVlW/qiaeeEGdn29wmBOAiI0gx1Y9LCRyg8a47C5WHVuV6mha3FFZKNEw==",
+  "dgSpecHash": "OhAT9GMqdqGUuVaB5DghHmlmfE3+tHtqZ3lSENekShG4MwfIHkSwU4ZVloEQeiMKWvUgsv8bUHdpfbLaBjm1xw==",
   "success": true,
   "projectFilePath": "/home/jcob/Pulpit/Projekt-Miejsca-Kultury-Backend/Api/Api.csproj",
   "expectedPackageFiles": [
@@ -168,7 +168,10 @@
     "/home/jcob/.nuget/packages/system.threading.tasks.extensions/4.3.0/system.threading.tasks.extensions.4.3.0.nupkg.sha512",
     "/home/jcob/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/home/jcob/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/home/jcob/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
+    "/home/jcob/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
+    "/home/jcob/.nuget/packages/microsoft.netcore.app.ref/7.0.19/microsoft.netcore.app.ref.7.0.19.nupkg.sha512",
+    "/home/jcob/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.19/microsoft.aspnetcore.app.ref.7.0.19.nupkg.sha512",
+    "/home/jcob/.nuget/packages/microsoft.netcore.app.host.linux-x64/7.0.19/microsoft.netcore.app.host.linux-x64.7.0.19.nupkg.sha512"
   ],
   "logs": [
     {

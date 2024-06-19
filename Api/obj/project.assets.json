@@ -8693,6 +8693,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.19, 7.0.19]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[7.0.19, 7.0.19]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.19, 7.0.19]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -8701,7 +8715,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/jcob/.dotnet/sdk/7.0.407/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/jcob/.dotnet/sdk/8.0.300/RuntimeIdentifierGraph.json"
       }
     }
   },
