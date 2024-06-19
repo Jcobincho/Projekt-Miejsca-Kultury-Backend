@@ -23,4 +23,6 @@ public interface IPostsRepository
     Task<List<DisplayPostsDto>> DisplayPostsAsync(PlacesCategory placesCategory, CancellationToken cancellationToken);
     Task<RatingDto> DisplayRatingAsync(Guid placeId, Guid userId, CancellationToken cancellationToken);
     Task<List<CommentDto>> DisplayCommentAsync(Guid postId, CancellationToken cancellationToken);
+    Task<int> LikeSystemAsync(Guid postId, Guid userId, CancellationToken cancellationToken);
+
 }

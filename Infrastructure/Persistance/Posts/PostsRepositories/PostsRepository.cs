@@ -177,4 +177,30 @@ public class PostsRepository : IPostsRepository
 
         return comments.Select(x => x.CommentAsDto()).ToList();
     }
+    
+    public async Task<int> LikeSystemAsync(Guid postId, Guid userId, CancellationToken cancellationToken)
+    {
+        
+        var post = await _context.Place.FirstOrDefaultAsync(p => p.Id == postId, cancellationToken);
+        
+        if (post == null)
+        {
+            throw new PostNotFoundException();
+        }
+
+        if (post.LikedBy.Contains(userId))
+        {
+            post.LikedBy.Remove(userId);
+        }
+        else if (!post.LikedBy.Contains(userId))
+        {
+            post.LikedBy.Add(userId);
+        }
+
+        int likecout = post.LikedBy.Count;
+        
+        await _context.SaveChangesAsync(cancellationToken);
+        
+        return likecout;
+    }
 }

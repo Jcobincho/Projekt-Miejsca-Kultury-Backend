@@ -10,4 +10,5 @@ public class DisplayPostsDto
     
     public double AverageRating { get; set; }
     public List<string> Images { get; set; }
+    public int LikesCount { get; set; }
 }
